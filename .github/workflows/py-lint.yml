@@ -1,0 +1,12 @@
+name: Pythonlint
+
+on: [push, pull_request]
+
+jobs:
+  pylints:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ricardochaves/python-lint@master
+        with:
+          python-root-list: "$(git ls-files '*.py')"
