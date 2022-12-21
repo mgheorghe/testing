@@ -24,13 +24,6 @@ jobs:
         env:
           FILTER_REGEX_EXCLUDE: .*work-in-progress.*
           VALIDATE_ALL_CODEBASE: true
-          PYTHON_BANDIT: true
-          PYTHON_PYLINT: true
-          PYTHON_FLAKE8: true
-          PYTHON_BLACK: true
-          PYTHON_ISORT: true
-          PYTHON_MYPY: true
-          PYTHON_PYRIGHT: true
           # Change to 'master' if your main branch differs
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
