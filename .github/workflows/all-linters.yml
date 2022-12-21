@@ -22,6 +22,7 @@ jobs:
       - name: Lint
         uses: github/super-linter/slim@v4
         env:
+          FILTER_REGEX_EXCLUDE: .*work-in-progress.*
           VALIDATE_ALL_CODEBASE: true
           VALIDATE_PYTHON3_PYLINT: true
           VALIDATE_PYTHON3_FLAKE8: true
