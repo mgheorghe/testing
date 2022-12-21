@@ -3,10 +3,7 @@
 # More info at https://megalinter.io
 name: MegaLinter-mir22222222222222222222
 
-on:
-  # Trigger mega-linter at every push. Action will also be visible from Pull Requests to main
-  push: # Comment this line to trigger action only on pull-requests (not recommended if you don't pay for GH Actions)
-  pull_request:
+on: [push, pull_request]
   
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -20,7 +17,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       # MegaLinter
@@ -30,8 +26,12 @@ jobs:
         # More info at https://megalinter.io/flavors/
         uses: oxsecurity/megalinter/flavors/python@beta
         env:
-          # All available variables are described in documentation
-          # https://megalinter.io/configuration/#shared-variables
-          # ADD YOUR CUSTOM ENV VARIABLES HERE OR DEFINE THEM IN A FILE .mega-linter.yml AT THE ROOT OF YOUR REPOSITORY
-          VALIDATE_ALL_CODEBASE: true #  ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }} # Validates all source when push on main, else just the git diff with main. Override with true if you always want to lint all sources
+          FILTER_REGEX_EXCLUDE: .*work-in-progress.*
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_PYTHON3_PYLINT: true
+          VALIDATE_PYTHON3_FLAKE8: true
+          VALIDATE_PYTHON3_BLACK: true
+          VALIDATE_PYTHON3_ISORT: true
+          # Change to 'master' if your main branch differs
+          DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
