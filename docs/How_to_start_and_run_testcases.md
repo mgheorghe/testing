@@ -75,28 +75,36 @@ TODO: create a lab BOM
     sudo systemctl restart sshd
     ```
 - setup management port configuration using this sample `/etc/netplan/00-installer-config.yaml`:
-    ```
-    network:
-      version: 2
-      ethernets:
-        ens160:
-          dhcp4: false
-          dhcp6: false
-      bridges:
-        br1:
-          interfaces: [ens160]
-          addresses: [10.36.118.210/24]
-          gateway4: 10.36.118.1
-          mtu: 1500
-          nameservers:
-            addresses: [4.4.4.4, 8.8.8.8]
-          parameters:
-            stp: false
-            forward-delay: 0
-            max-age: 0
-          dhcp4: no
-          dhcp6: no
-    ```
+  ```
+  ---
+  network:
+    ethernets:
+      ens160:
+        dhcp4: false
+        dhcp6: false
+    bridges:
+      br1:
+        interfaces: [ens160]
+        addresses: [10.36.118.210/24]
+        routes:
+  	- to: default
+  	  via: 10.36.118.1
+        mtu: 1500
+        nameservers:
+          addresses: [4.4.4.4, 8.8.8.8]
+        parameters:
+	  stp: false
+	  forward-delay: 0
+	  max-age: 0
+        dhcp4: false
+        dhcp6: false
+    version: 2
+  ```
+- check the yaml file is ok (optional)
+  ```
+  sudo apt -y install yamllint
+  yamllint /etc/netplan/00-installer-config.yaml
+  ```
 - reboot
     - ensure networking is ok
     - this is needed also for the permissions to be update, otherwise next step will fail
@@ -126,7 +134,7 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
     ```
     cd /vms
     
-    tar xjf IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2
+    sudo tar xjf IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2
     
     virt-install --name IxNetwork-930 --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
     virsh autostart IxNetwork-930
