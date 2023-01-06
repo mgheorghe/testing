@@ -57,7 +57,7 @@ TODO: create a lab BOM
         ```
  - install KVM
     ```
-    sudo apt install cpu-checker
+    sudo apt -y install cpu-checker
     sudo kvm-ok
     sudo apt -y install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager libosinfo-bin
     sudo usermod -aG libvirt $USER
@@ -108,28 +108,28 @@ TODO: create a lab BOM
 
 - build container
 ```
-docker build --no-cache --tag dent/test-framework:latest ./testing/test/environments/test-framework
+docker build --no-cache --tag dent/test-framework:latest ./testing/framework
 docker tag dent/test-framework:latest dent/test-framework:1.0.0
 ```
 
 - VMs
     - create vms folder 
     ```
-    mkdir /vms
-    chmod 775 -R /vms
+    sudo mkdir /vms
+    sudo chmod 775 -R /vms
     ```
-    - download [IxNetwork kvm image](https://downloads.ixiacom.com/support/downloads_and_updates/eb/HF001150/IxNetworkWeb_KVM_9.20.2114.1.qcow2.tar.bz2).
-    - copy `IxNetworkWeb_KVM_9.20.2112.27.qcow2.tar.bz2` to `/vms/` on your testbed server.
+    - download [IxNetwork kvm image](https://downloads.ixiacom.com/support/downloads_and_updates/public/ixnetwork/9.30/IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2).
+    - copy `IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2` to `/vms/` on your testbed server.
 
     
 - start the VMs:
     ```
     cd /vms
     
-    tar xjf IxNetworkWeb_KVM_9.20.2114.1.qcow2.tar.bz2
+    tar xjf IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2
     
-    virt-install --name IxNetwork-920 --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.20.2112.27.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
-    virsh autostart IxNetwork-920
+    virt-install --name IxNetwork-930 --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
+    virsh autostart IxNetwork-930
     
     ```
 
