@@ -6,14 +6,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  markdown-lint:
+  lint-markdown:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Run tests
         run: docker run -v $PWD:/workdir ghcr.io/igorshubovych/markdownlint-cli:latest --ignore=minutes --disable=MD013 "**/*.md"
 
-  docker-lint:
+  lint-docker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -22,13 +22,13 @@ jobs:
           recursive: true
           ignore: DL3041
 
-  shellcheck:
+  lint-shell:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: azohra/shell-linter@v0.6.0
 
-  YAMLlint:
+  lint-yaml:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
