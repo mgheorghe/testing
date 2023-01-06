@@ -11,9 +11,151 @@ Hardware Requirements :
 
 1 IxNetwork EA API server.
 
-1 linux with CentOS8 or higher. 
+1 linux with Ubuntu 22.04 (centos8 will also work or other distros but the instructions bellow are for ubuntu 22.04) 
 
 ###################################
+
+
+## Prepare Testbed Server
+
+- Install Ubuntu[^1] 22.04 x64 on the server. ([ubuntu-22.04.1-live-server-amd64.iso](https://releases.ubuntu.com/22.04/))
+- Install Ubuntu prerequisites
+    ```
+    sudo apt -y update
+    sudo apt -y upgrade
+    sudo apt -y install \
+      python3 \
+      python3-pip \
+      net-tools \
+      curl \
+      git \
+      make
+    sudo apt -y install ubuntu-desktop (TODO: remove this depedency)
+    ```
+- install Docker (all credits to [Docker manual](https://docs.docker.com/engine/install/ubuntu/) )
+    ```
+    sudo apt-get remove docker docker-engine docker.io containerd runc
+    sudo apt-get update
+    sudo apt-get install \
+      apt-transport-https \
+      ca-certificates \
+      curl \
+      gnupg-agent \
+      software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo apt-key fingerprint 0EBFCD88
+    sudo add-apt-repository \
+      "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) \
+      stable"
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io
+    sudo docker run hello-world
+    ```
+    - add your user to docker group
+        ```
+        sudo usermod -aG docker $USER
+        ```
+ - install KVM
+    ```
+    sudo apt install cpu-checker
+    sudo kvm-ok
+    sudo apt -y install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager libosinfo-bin
+    sudo usermod -aG libvirt $USER
+    sudo usermod -aG kvm $USER
+    sudo systemctl enable libvirtd
+    sudo systemctl start libvirtd
+    ```
+ 
+ - enable root (optional)
+    ```
+    sudo apt -y install mc
+    (edit)/etc/ssh/sshd_config PermitRootLogin yes
+    sudo passwd
+    # we can use 'dent' as an example password (it is recomended to use a strong password)
+    sudo systemctl restart sshd
+    ```
+- setup management port configuration using this sample `/etc/netplan/00-installer-config.yaml`:
+    ```
+    network:
+      version: 2
+      ethernets:
+        ens160:
+          dhcp4: false
+          dhcp6: false
+      bridges:
+        br1:
+          interfaces: [ens160]
+          addresses: [10.36.118.210/24]
+          gateway4: 10.36.118.1
+          mtu: 1500
+          nameservers:
+            addresses: [4.4.4.4, 8.8.8.8]
+          parameters:
+            stp: false
+            forward-delay: 0
+            max-age: 0
+          dhcp4: no
+          dhcp6: no
+    ```
+- reboot
+    - ensure networking is ok
+    - this is needed also for the permissions to be update, otherwise next step will fail
+
+- clone the `dentproject/testing` repository into your working directory:
+    ```
+    git clone https://github.com/dentproject/testing
+    ```
+
+- build container
+```
+docker build --no-cache --tag dent/test-framework:latest ./testing/test/environments/test-framework
+docker tag dent/test-framework:latest dent/test-framework:1.0.0
+```
+
+- VMs
+    - create vms folder 
+    ```
+    mkdir /vms
+    chmod 775 -R /vms
+    ```
+    - download [IxNetwork kvm image](https://downloads.ixiacom.com/support/downloads_and_updates/eb/HF001150/IxNetworkWeb_KVM_9.20.2114.1.qcow2.tar.bz2).
+    - copy `IxNetworkWeb_KVM_9.20.2112.27.qcow2.tar.bz2` to `/vms/` on your testbed server.
+
+    
+- start the VMs:
+    ```
+    cd /vms
+    
+    tar xjf IxNetworkWeb_KVM_9.20.2114.1.qcow2.tar.bz2
+    
+    virt-install --name IxNetwork-920 --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.20.2112.27.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
+    virsh autostart IxNetwork-920
+    
+    ```
+
+[^1]: it can be also centos archlinux .... but the example commands shown are for ubuntu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 To run thease cases below are the steps :
