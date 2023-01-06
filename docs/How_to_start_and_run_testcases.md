@@ -1,24 +1,21 @@
 # Description
 This is the directory to document how to start/run the tests from the scratch.
 
-Hardware Requirements :
+## Hardware Requirements
 
-################################
-
-7 Dentos Devices.
-
-1 Ixia Chassis with 16 10G port running IxOS/IxNetwork EA versions [We are using 9.20 EA].
-
-1 IxNetwork EA API server.
-
-1 linux with Ubuntu 22.04 (centos8 will also work or other distros but the instructions bellow are for ubuntu 22.04) 
-
-###################################
-
+  * 7 Dentos Devices.
+  * 1 Ixia Chassis with 16 10G port running IxOS/IxNetwork EA versions [We are using 9.20 EA].
+  * 1 IxNetwork EA API server.
+  * 1 linux with Ubuntu 22.04 (centos8 will also work or other distros but the instructions bellow are for ubuntu 22.04) 
+TODO: create a lab BOM
 
 ## Prepare Testbed Server
 
 - Install Ubuntu[^1] 22.04 x64 on the server. ([ubuntu-22.04.1-live-server-amd64.iso](https://releases.ubuntu.com/22.04/))
+  - select all default options (unless otherwise noted bellow)
+  - on disk setup: disable LVM (optional)
+  - on profile setup: put name, servername, username, password all as `dent` for example purposes
+  - on ssh setup: enable `install OpenSSH server`
 - Install Ubuntu prerequisites
     ```
     sudo apt -y update
