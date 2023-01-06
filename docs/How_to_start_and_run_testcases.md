@@ -140,6 +140,29 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
     virsh autostart IxNetwork-930
     
     ```
+    
+- configure the IxNetwork VM ip:
+  ```
+  virsh console IxNetwork-930 --safe
+  ```
+  if a dhcp server is present we can obseve the IP assigned
+  ```
+  dent@dent:~$ virsh console IxNetwork-930 --safe
+  Connected to domain 'IxNetwork-930'
+  Escape character is ^] (Ctrl + ])
+
+  CentOS Linux 7 (Core)
+  Kernel 3.10.0-693.21.1.el7.x86_64 on an x86_64
+
+  Ixia
+  System initializing, it may take few seconds to become available.
+
+  The IPv4 address is 10.36.118.214 (MAC address 52:54:00:9e:4e:8f)
+  Enter https://10.36.118.214 in your web browser to access the application
+  The IPv6 link-local address is fe80::5054:ff:fe9e:4e8f
+  The IPv6 global address is not configured
+  To change the IP address, log in as admin (password: admin) below
+  ```
 
 [^1]: it can be also centos archlinux .... but the example commands shown are for ubuntu
 
