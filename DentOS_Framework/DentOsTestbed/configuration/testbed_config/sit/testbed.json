@@ -1,4 +1,3 @@
-// JSON.parse(JSON.minify(json)) must be used since comments are not directly supported in JSON
 {
     "devices": [
         {
