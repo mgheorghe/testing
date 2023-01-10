@@ -1,0 +1,76 @@
+{
+    "devices": [
+        {
+            "friendlyName":"Dent Agg2",
+            "os":"dentos",
+            "type" : "AGGREGATION_ROUTER",
+            "hostName": "agg_r2",
+            "ip": "10.36.78.31",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB7",
+            "baudrate": 115200,
+	    "mediaMode": "copper-fiber"
+        },
+        {
+            "friendlyName":"Dent Dist2",
+            "os":"dentos",
+            "type" : "DISTRIBUTION_ROUTER",
+            "hostName": "dis_r2",
+            "ip": "10.36.79.253",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB7",
+            "baudrate": 115200,
+            "mediaMode": "copper-fiber"
+        },
+        {
+            "friendlyName":"Dent Infra1",
+            "os":"dentos",
+            "type" : "INFRA_SWITCH",
+            "hostName": "infra_sw1",
+            "ip": "10.36.79.105",
+            "login":{
+                "userName":"root",
+                "password":"onl"
+            },
+            "serialDev":"/dev/ttyUSB7",
+            "baudrate": 115200,
+            "mediaMode": "copper-fiber"
+        },
+
+        {
+            "friendlyName":"Ixia Traffic Generator",
+            "os":"ixnetwork",
+            "type" : "TRAFFIC_GENERATOR",
+            "hostName": "ixia",
+            "ip": "10.36.78.35",
+            "login":{
+                "userName":"admin",
+                "password":"admin"
+            },
+            "serialDev":"/dev/ttyUSBXX",
+            "baudrate": 115200,
+            "links" : [
+                ["10.36.78.42:3:5", "dentlab-agg3:swp1"],
+                ["10.36.78.42:3:6", "dentlab-agg3:swp2"],
+		["10.36.78.42:3:7", "dentlab-dist3:swp1"],
+                ["10.36.78.42:3:8", "dentlab-dist3:swp2"],
+                ["10.36.78.42:3:9", "dentlab-agg2:swp1"],
+                ["10.36.78.42:3:10", "dentlab-agg2:swp2"],
+                ["10.36.78.42:3:11", "dentlab-dist2:swp1"],
+                ["10.36.78.42:3:12", "dentlab-dist2:swp2"],
+                ["10.36.78.42:3:15", "dentlab-infra1:swp1"],
+                ["10.36.78.42:3:16", "dentlab-infra1:swp2"]
+	    ],
+	    "mediaMode": "copper-fiber"
+        }
+    ],
+    "operator" : "dent",
+    "topology" : "gordion-knot",
+    "force_discovery" : false
+}
