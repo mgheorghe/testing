@@ -89,4 +89,4 @@ jobs:
           use-black: false
           use-mypy: false
           use-isort: true
-          extra-isort-options: "--line-length 160 --multi-line 2"
+          extra-isort-options: "--line-length 160 --multi-line 3"
