@@ -6,8 +6,8 @@
             "os":"dentos",
             "type" : "DISTRIBUTION_ROUTER",
             "hostName": "dist1",
-            "model": "arm64-wnc-qsa72-aom-a-48p-r0",
-            "ip": "10.36.118.32",
+            "model": "arm64-delta-tn48m-poe-dn-r0",
+            "ip": "10.36.118.23",
             "login":{
                 "userName":"root",
                 "password":"onl"
@@ -15,8 +15,6 @@
             "serialDev":"/dev/ttyUSB3",
             "baudrate": 115200,
             "links" : [
-                //["swp1", "ixia:1:3:copper"],
-                //["swp2", "ixia:1:4:copper"],
                 ["swp14", "dist2:swp13"],
                 ["swp16", "dist2:swp15"],
                 ["swp18", "dist2:swp17"],
@@ -39,8 +37,6 @@
             "serialDev":"/dev/ttyUSB3",
             "baudrate": 115200,
             "links" : [
-                //["swp1", "ixia:1:7:copper"],
-                //["swp2", "ixia:1:8:copper"],
                 ["swp13", "dist1:swp14"],
                 ["swp14", "dist3:swp13"],
                 ["swp15", "dist1:swp16"],
@@ -58,8 +54,8 @@
             "os":"dentos",
             "type" : "DISTRIBUTION_ROUTER",
             "hostName": "dist3",
-            "model": "arm64-delta-tn48m-poe-dn-r0",
-            "ip": "10.36.118.23",
+            "model": "arm64-wnc-qsa72-aom-a-48p-r0",
+            "ip": "10.36.118.32",
             "login":{
                 "userName":"root",
                 "password":"onl"
@@ -67,8 +63,6 @@
             "serialDev":"/dev/ttyUSB3",
             "baudrate": 115200,
             "links" : [
-                //["swp1", "ixia:1:11:copper"],
-                //["swp2", "ixia:1:12:copper"],
                 ["swp13", "dist2:swp14"],
                 ["swp15", "dist2:swp16"],
                 ["swp17", "dist2:swp16"],
@@ -82,8 +76,8 @@
             "os":"dentos",
             "type" : "AGGREGATION_ROUTER",
             "hostName": "agg1",
-            "model": "arm64-wnc-qsd61-aom-a-48-r0",
-            "ip": "10.36.118.31",
+            "model": "arm64-delta-tx4810-r0",
+            "ip": "10.36.118.22",
             "login":{
                 "userName":"root",
                 "password":"onl"
@@ -91,10 +85,8 @@
             "serialDev":"/dev/ttyUSB2",
             "baudrate": 115200,
             "links" : [
-                //["swp1", "ixia:1:1:fiber"],
-                //["swp2", "ixia:1:2:fiber"],
-                ["swp3", "infra1:swp3"],
-                ["swp4", "infra1:swp4"],
+                ["swp25", "infra1:swp25"],
+                ["swp26", "infra1:swp26"],
                 ["swp46", "dist2:swp51"],
                 ["swp47", "dist1:swp49"],
                 ["swp48", "dist1:swp50"]
@@ -114,10 +106,8 @@
             "serialDev":"/dev/ttyUSB3",
             "baudrate": 115200,
             "links" : [
-                //["swp1", "ixia:1:5:fiber"],
-                //["swp2", "ixia:1:6:fiber"],
-                ["swp3", "infra1:swp5"],
-                ["swp4", "infra2:swp6"],
+                ["swp27", "infra1:swp27"],
+                ["swp28", "infra2:swp28"],
                 ["swp45", "dist1:swp52"],
                 ["swp46", "dist3:swp51"],
                 ["swp47", "dist2:swp49"],
@@ -129,8 +119,8 @@
             "os":"dentos",
             "type" : "AGGREGATION_ROUTER",
             "hostName": "agg3",
-            "model": "arm64-delta-tx4810-r0",
-            "ip": "10.36.118.22",
+            "model": "arm64-wnc-qsd61-aom-a-48-r0",
+            "ip": "10.36.118.31",
             "login":{
                 "userName":"root",
                 "password":"onl"
@@ -138,10 +128,8 @@
             "serialDev":"/dev/ttyUSB3",
             "baudrate": 115200,
             "links" : [
-                //["swp1", "ixia:1:9:fiber"],
-                //["swp2", "ixia:1:10:fiber"],
-                ["swp3", "infra1:swp7"],
-                ["swp4", "infra2:swp8"],
+                ["swp29", "infra1:swp29"],
+                ["swp30", "infra2:swp30"],
                 ["swp45", "dist2:swp52"],
                 ["swp47", "dist3:swp49"],
                 ["swp48", "dist3:swp50"]
@@ -161,14 +149,12 @@
             "serialDev":"/dev/ttyUSB0",
             "baudrate": 115200,
             "links" : [
-                //["swp1", "ixia:1:15:fiber"],
-                //["swp2", "ixia:1:16:fiber"],
-                ["swp3", "agg1:swp3"],
-                ["swp4", "agg1:swp4"],
-                ["swp5", "agg2:swp3"],
-                ["swp6", "agg2:swp4"],
-                ["swp7", "agg3:swp3"],
-                ["swp8", "agg3:swp4"]
+                ["swp25", "agg1:swp25"],
+                ["swp26", "agg1:swp26"],
+                ["swp27", "agg2:swp27"],
+                ["swp28", "agg2:swp28"],
+                ["swp29", "agg3:swp29"],
+                ["swp30", "agg3:swp30"]
             ]
         },
         {
@@ -185,20 +171,22 @@
             "serialDev":"/dev/ttyUSBXX",
             "baudrate": 115200,
             "links" : [
-                ["10.36.118.119:1:1", "agg1:swp1"],
-                ["10.36.118.119:1:2", "agg1:swp2"],
-                ["10.36.118.119:1:3", "dist1:swp1"],
-                ["10.36.118.119:1:4", "dist1:swp2"],
-                ["10.36.118.119:1:5", "agg2:swp1"],
-                ["10.36.118.119:1:6", "agg2:swp2"],
-                ["10.36.118.119:1:7", "dist2:swp1"],
-                ["10.36.118.119:1:8", "dist2:swp2"],
-                ["10.36.118.119:1:9", "agg3:swp1"],
-                ["10.36.118.119:1:10", "agg3:swp2"],
-                ["10.36.118.119:1:11", "dist3:swp1"],
-                ["10.36.118.119:1:12", "dist3:swp2"],
-                ["10.36.118.119:1:15", "infra1:swp1"],
-                ["10.36.118.119:1:16", "infra1:swp2"]
+                ["10.36.118.119:1:1", "dist1:swp1"],
+                ["10.36.118.119:1:2", "dist1:swp2"],
+                ["10.36.118.119:1:3", "agg1:swp3"],
+                ["10.36.118.119:1:4", "agg1:swp4"],
+                ["10.36.118.119:1:5", "dist2:swp1"],
+                ["10.36.118.119:1:6", "dist2:swp2"],
+                ["10.36.118.119:1:7", "agg2:swp3"],
+                ["10.36.118.119:1:8", "agg2:swp4"],
+                ["10.36.118.119:1:9", "dist3:swp1"],
+                ["10.36.118.119:1:10", "dist3:swp2"],
+                ["10.36.118.119:1:11", "agg3:swp3"],
+                ["10.36.118.119:1:12", "agg3:swp4"],
+                ["10.36.118.119:1:13", "infra1:swp1"],
+                ["10.36.118.119:1:14", "infra1:swp2"],
+                ["10.36.118.119:1:15", "infra1:swp3"],
+                ["10.36.118.119:1:16", "infra1:swp4"]
             ]
         }
     ],
