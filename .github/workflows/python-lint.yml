@@ -33,7 +33,7 @@ jobs:
           use-black: false
           use-mypy: false
           use-isort: false
-          extra-pycodestyle-options: ""
+          extra-pycodestyle-options: "--max-line-length=160"
   python-flake8:
     runs-on: ubuntu-latest
     steps:
