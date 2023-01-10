@@ -20,11 +20,6 @@ jobs:
           use-mypy: false
           use-isort: false
           extra-pylint-options: ""
-          extra-pycodestyle-options: ""
-          extra-flake8-options: ""
-          extra-black-options: ""
-          extra-mypy-options: ""
-          extra-isort-options: ""
   python-pycodestyle:
     runs-on: ubuntu-latest
     steps:
@@ -38,12 +33,7 @@ jobs:
           use-black: false
           use-mypy: false
           use-isort: false
-          extra-pylint-options: ""
           extra-pycodestyle-options: ""
-          extra-flake8-options: ""
-          extra-black-options: ""
-          extra-mypy-options: ""
-          extra-isort-options: ""
   python-flake8:
     runs-on: ubuntu-latest
     steps:
@@ -57,12 +47,7 @@ jobs:
           use-black: false
           use-mypy: false
           use-isort: false
-          extra-pylint-options: ""
-          extra-pycodestyle-options: ""
           extra-flake8-options: ""
-          extra-black-options: ""
-          extra-mypy-options: ""
-          extra-isort-options: ""
   python-black:
     runs-on: ubuntu-latest
     steps:
@@ -76,12 +61,7 @@ jobs:
           use-black: true
           use-mypy: false
           use-isort: false
-          extra-pylint-options: ""
-          extra-pycodestyle-options: ""
-          extra-flake8-options: ""
           extra-black-options: ""
-          extra-mypy-options: ""
-          extra-isort-options: ""
   python-mypy:
     runs-on: ubuntu-latest
     steps:
@@ -95,12 +75,7 @@ jobs:
           use-black: false
           use-mypy: true
           use-isort: false
-          extra-pylint-options: ""
-          extra-pycodestyle-options: ""
-          extra-flake8-options: ""
-          extra-black-options: ""
           extra-mypy-options: ""
-          extra-isort-options: ""
   python-isort:
     runs-on: ubuntu-latest
     steps:
@@ -114,9 +89,4 @@ jobs:
           use-black: false
           use-mypy: false
           use-isort: true
-          extra-pylint-options: ""
-          extra-pycodestyle-options: ""
-          extra-flake8-options: ""
-          extra-black-options: ""
-          extra-mypy-options: ""
-          extra-isort-options: ""
+          extra-isort-options: "--line-length 160"
