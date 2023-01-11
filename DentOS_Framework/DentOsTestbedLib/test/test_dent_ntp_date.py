@@ -6,9 +6,8 @@
 
 import asyncio
 
-from dent_os_testbed.lib.ntp.ntp_date import NtpDate
-
 from .utils import TestDevice
+from dent_os_testbed.lib.ntp.ntp_date import NtpDate
 
 
 def test_that_ntp_date_set(capfd):

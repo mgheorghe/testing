@@ -6,9 +6,8 @@
 
 import asyncio
 
-from dent_os_testbed.lib.lldp.lldp import Lldp
-
 from .utils import TestDevice
+from dent_os_testbed.lib.lldp.lldp import Lldp
 
 
 def test_that_lldp_show(capfd):

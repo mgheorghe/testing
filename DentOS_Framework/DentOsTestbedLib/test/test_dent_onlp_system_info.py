@@ -6,9 +6,8 @@
 
 import asyncio
 
-from dent_os_testbed.lib.onlp.onlp_system_info import OnlpSystemInfo
-
 from .utils import TestDevice
+from dent_os_testbed.lib.onlp.onlp_system_info import OnlpSystemInfo
 
 
 def test_that_onlp_system_info_show(capfd):
