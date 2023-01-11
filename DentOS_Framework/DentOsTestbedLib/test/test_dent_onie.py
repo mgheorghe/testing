@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.onlp.onie import Onie
+
+from .utils import TestDevice
 
 
 def test_that_onie_select(capfd):

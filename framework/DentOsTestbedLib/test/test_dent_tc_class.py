@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.tc.tc_class import TcClass
+
+from .utils import TestDevice
 
 
 def test_that_tc_class_add(capfd):

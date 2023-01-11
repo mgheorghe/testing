@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.bridge.bridge_monitor import BridgeMonitor
+
+from .utils import TestDevice
 
 
 def test_that_bridge_monitor_monitor(capfd):

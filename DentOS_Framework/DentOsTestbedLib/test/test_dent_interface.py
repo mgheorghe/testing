@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.interfaces.interface import Interface
+
+from .utils import TestDevice
 
 
 def test_that_interface_up(capfd):

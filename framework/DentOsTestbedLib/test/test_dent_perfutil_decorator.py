@@ -2,10 +2,11 @@ import time
 
 import pytest
 
-from .utils import TestDevice
 from dent_os_testbed.lib.ip.ip_address import IpAddress
 from dent_os_testbed.lib.ip.ip_link import IpLink
 from dent_os_testbed.utils.perf_util import PerfUtil
+
+from .utils import TestDevice
 
 pytest.devices = [TestDevice()]
 pytestmark = pytest.mark.skip("Perf tests still WIP")

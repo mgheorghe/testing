@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.frr.bgp import Bgp
+
+from .utils import TestDevice
 
 
 def test_that_bgp_show(capfd):

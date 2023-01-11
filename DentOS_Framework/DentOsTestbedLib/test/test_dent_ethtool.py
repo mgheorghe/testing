@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.ethtool.ethtool import Ethtool
+
+from .utils import TestDevice
 
 
 def test_that_ethtool_show(capfd):

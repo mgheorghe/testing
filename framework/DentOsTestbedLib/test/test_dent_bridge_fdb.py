@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.bridge.bridge_fdb import BridgeFdb
+
+from .utils import TestDevice
 
 
 def test_that_bridge_fdb_add(capfd):

@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.ip.ip_address import IpAddress
+
+from .utils import TestDevice
 
 
 def test_that_ip_address_add(capfd):

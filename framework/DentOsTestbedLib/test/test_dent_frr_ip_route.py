@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.frr.frr_ip_route import FrrIpRoute
+
+from .utils import TestDevice
 
 
 def test_that_frr_ip_route_show(capfd):

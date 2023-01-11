@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.frr.route_map import RouteMap
+
+from .utils import TestDevice
 
 
 def test_that_route_map_configure(capfd):

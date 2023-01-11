@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.traffic.traffic_gen import TrafficGen
+
+from .utils import TestDevice
 
 
 def test_that_traffic_gen_connect(capfd):

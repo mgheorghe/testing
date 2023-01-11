@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.poe.poectl import Poectl
+
+from .utils import TestDevice
 
 
 def test_that_poectl_show(capfd):

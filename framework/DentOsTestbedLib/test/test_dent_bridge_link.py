@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.bridge.bridge_link import BridgeLink
+
+from .utils import TestDevice
 
 
 def test_that_bridge_link_set(capfd):

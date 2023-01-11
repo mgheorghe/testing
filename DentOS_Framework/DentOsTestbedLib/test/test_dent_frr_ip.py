@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.frr.frr_ip import FrrIp
+
+from .utils import TestDevice
 
 
 def test_that_frr_ip_set(capfd):

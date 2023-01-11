@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.iptables.ip_tables import IpTables
+
+from .utils import TestDevice
 
 
 def test_that_ip_tables_append(capfd):

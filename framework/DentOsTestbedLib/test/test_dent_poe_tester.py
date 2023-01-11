@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.poe_tester.poe_tester import PoeTester
+
+from .utils import TestDevice
 
 
 def test_that_poe_tester_attach(capfd):

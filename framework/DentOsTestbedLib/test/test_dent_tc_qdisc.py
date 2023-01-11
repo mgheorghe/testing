@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.tc.tc_qdisc import TcQdisc
+
+from .utils import TestDevice
 
 
 def test_that_tc_qdisc_add(capfd):

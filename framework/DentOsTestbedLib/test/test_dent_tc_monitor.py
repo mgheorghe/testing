@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.tc.tc_monitor import TcMonitor
+
+from .utils import TestDevice
 
 
 def test_that_tc_monitor_monitor(capfd):

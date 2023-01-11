@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.os.memory_usage import MemoryUsage
+
+from .utils import TestDevice
 
 
 def test_that_memory_usage_show(capfd):

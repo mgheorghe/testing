@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.os.disk_free import DiskFree
+
+from .utils import TestDevice
 
 
 def test_that_disk_free_show(capfd):

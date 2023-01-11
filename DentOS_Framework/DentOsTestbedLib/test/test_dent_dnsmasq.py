@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.dnsmasq.dnsmasq import Dnsmasq
+
+from .utils import TestDevice
 
 
 def test_that_dnsmasq_test(capfd):

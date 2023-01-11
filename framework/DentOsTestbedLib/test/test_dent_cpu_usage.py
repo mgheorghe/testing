@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.os.cpu_usage import CpuUsage
+
+from .utils import TestDevice
 
 
 def test_that_cpu_usage_show(capfd):

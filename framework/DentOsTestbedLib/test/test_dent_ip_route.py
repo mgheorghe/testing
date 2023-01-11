@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.ip.ip_route import IpRoute
+
+from .utils import TestDevice
 
 
 def test_that_ip_route_add(capfd):

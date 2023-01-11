@@ -6,8 +6,9 @@
 
 import asyncio
 
-from .utils import TestDevice
 from dent_os_testbed.lib.os.service import Service
+
+from .utils import TestDevice
 
 
 def test_that_service_show(capfd):

@@ -19,6 +19,5 @@ jobs:
           use-black: false
           use-mypy: false
           use-isort: true
-          extra-isort-options: "--line-length 160 --wrap-length 60 --multi-line 1 --known-local-folder dent_os_testbed --trailing-comma"
-          isort --line-length 160 --wrap-length 80 --multi-line 3 --known-local-folder dent_os_testbed,gen --trailing-comma --force-grid-wrap 2 --recursive .
+          extra-isort-options: "--line-length 160 --wrap-length 80 --multi-line 3 --project dent_os_testbed --project gen --trailing-comma --force-grid-wrap 2"
   

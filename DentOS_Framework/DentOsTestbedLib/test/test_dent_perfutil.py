@@ -1,7 +1,8 @@
 import time
 
-from .utils import TestDevice
 from dent_os_testbed.utils.perf_util import PerfUtil
+
+from .utils import TestDevice
 
 
 def test_that_perf_util(capfd):
