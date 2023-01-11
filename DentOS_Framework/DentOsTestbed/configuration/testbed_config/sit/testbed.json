@@ -84,8 +84,8 @@
             "serialDev":"/dev/ttyUSB2",
             "baudrate": 115200,
             "links" : [
-                ["swp25", "infra1:swp25"],
-                ["swp26", "infra1:swp26"],
+                ["swp25", "infra1:swp51"],
+                ["swp26", "infra1:swp52"],
                 ["swp46", "dist2:swp51"],
                 ["swp47", "dist1:swp49"],
                 ["swp48", "dist1:swp50"]
@@ -105,8 +105,8 @@
             "serialDev":"/dev/ttyUSB3",
             "baudrate": 115200,
             "links" : [
-                ["swp27", "infra1:swp27"],
-                ["swp28", "infra2:swp28"],
+                ["swp27", "infra1:swp49"],
+                ["swp28", "infra2:swp50"],
                 ["swp45", "dist1:swp52"],
                 ["swp46", "dist3:swp51"],
                 ["swp47", "dist2:swp49"],
@@ -127,8 +127,8 @@
             "serialDev":"/dev/ttyUSB3",
             "baudrate": 115200,
             "links" : [
-                ["swp29", "infra1:swp29"],
-                ["swp30", "infra2:swp30"],
+                ["swp29", "infra1:swp47"],
+                ["swp30", "infra2:swp48"],
                 ["swp45", "dist2:swp52"],
                 ["swp47", "dist3:swp49"],
                 ["swp48", "dist3:swp50"]
@@ -148,12 +148,12 @@
             "serialDev":"/dev/ttyUSB0",
             "baudrate": 115200,
             "links" : [
-                ["swp25", "agg1:swp25"],
-                ["swp26", "agg1:swp26"],
-                ["swp27", "agg2:swp27"],
-                ["swp28", "agg2:swp28"],
-                ["swp29", "agg3:swp29"],
-                ["swp30", "agg3:swp30"]
+                ["swp51", "agg1:swp25"],
+                ["swp52", "agg1:swp26"],
+                ["swp49", "agg2:swp27"],
+                ["swp50", "agg2:swp28"],
+                ["swp47", "agg3:swp29"],
+                ["swp48", "agg3:swp30"]
             ]
         },
         {
