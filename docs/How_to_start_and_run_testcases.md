@@ -214,11 +214,11 @@ we will go through the process/steps in details below -
 
 ### 2. As per the testbed diagram we will connect all required cables among DUTs[DENT devices] and Keysight devices
 
-(System integration test bed)[https://github.com/dentproject/testing/docs/System_integration_test_bed]
+[System integration test bed](https://github.com/dentproject/testing/docs/System_integration_test_bed)
 
-### 3. install dentOS on the DUTs
+### 3. install DentOS on the DUTs
 
-To install dentOS follow the instructions here >> Link.
+To install DentOS follow the instructions here `TODO: add link here`
 
 ### 4. Run the tests
 

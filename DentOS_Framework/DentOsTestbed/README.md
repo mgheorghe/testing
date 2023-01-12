@@ -1,13 +1,14 @@
-# Testbed package for testing dent devices.
+# Testbed package for testing dent devices
 
 The package is intended to do the following
 
-- Initialize the testbed
-- Install Dent OS on the devices in the testbed
-- Trigger tests
-- Aggregates the results from the tests
+* Initialize the testbed
+* Install Dent OS on the devices in the testbed
+* Trigger tests
+* Aggregates the results from the tests
 
-### Install
+## Install
+
 Test framework install using the pip tool
 
 ```Shell
@@ -18,7 +19,7 @@ pip install netmiko
 pip install paramiko
 ```
 
-### Usage
+## Usage
 
 ```code
 usage: dentos_testbed_runtests [-h] [-c CONFIG]
@@ -55,9 +56,10 @@ Sample run on DENT lab
 dentos_testbed_runtests -d --stdout --config configuration/testbed_config/basic/testbed.json --config-dir configuration/testbed_config/basic/ --suite-groups suite_group_cleanup --discovery-reports-dir ./reports --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
 ```
 
-### Organizing test cases
-- Tests can be organized into scopes of functions, classes, modules and packages.
-- Inside the test folder, its recommended to organize the test code in following file hierarchy.
+## Organizing test cases
+
+* Tests can be organized into scopes of functions, classes, modules and packages.
+* Inside the test folder, its recommended to organize the test code in following file hierarchy.
 
 ```code
 src/dent_os_testbed/test/test_suite
@@ -82,17 +84,21 @@ src/dent_os_testbed/test/test_suite
  - Fixtures are a good way to write setup, cleanup, data injections, parameterizing, db provider etc.
  - Global fixtures can be provided in conftest.py
  - Package or module level fixtures can be defined in respective folders as shown above. But need to be registered in conftest.py as shown below.
-   `pytest_plugins = ["dent_os_testbed.test.connection.fixtures"]`
+ `pytest_plugins = ["dent_os_testbed.test.connection.fixtures"]`
+
  - Fixtures can also be written per test case level where fixture functions have to be decorated with `@pytest.fixture`
+
  - Usage of any pytest hooks of fixtures need to be placed in `conftest.py`
+
    Refer for pytest in-built plugins, fixtures and hooks: https://docs.pytest.org/en/stable/reference.html
 
-### Test suite and suite groups
-- For this framework, we are organizing test cases into `suite` and `suite group`
-- Test cases are mapped to test suites. Test suites are mapped to test suite groups.
-- Mapping test cases to suite is done through using custom PyTest markers.
-- test suite names need to be prefixed with `suite_` and suite group names need `suite_group_` prefix.
-- We can define custom markers at different scopes. ie function, class and module.
+## Test suite and suite groups
+
+* For this framework, we are organizing test cases into `suite` and `suite group`
+* Test cases are mapped to test suites. Test suites are mapped to test suite groups.
+* Mapping test cases to suite is done through using custom PyTest markers.
+* test suite names need to be prefixed with `suite_` and suite group names need `suite_group_` prefix.
+* We can define custom markers at different scopes. ie function, class and module.
 
 ```python
 # func level
@@ -108,8 +114,8 @@ import pytest
 pytestmark = [pytest.mark.suite_test]
 ```
 
-- test case can belong to multiple suites.
-- test suite and mapping from test suite to test suite group needs to be defined in `src/dent_os_testbed/constants.py`
+* test case can belong to multiple suites.
+* test suite and mapping from test suite to test suite group needs to be defined in `src/dent_os_testbed/constants.py`
 
 ```python
 PYTEST_SUITES = {
@@ -126,13 +132,14 @@ PYTEST_SUITE_GROUPS = {
 }
 ```
 
+## Location for writing tests
 
-### Location for writing tests
-- For tests that we want to run with "bb test" needs to be in "unit_tests" folder.
-- For tests that are part of test framework needs to be packaged with the build. So they should be part of "src/dent_os_testbed/test" folder.
+* For tests that we want to run with "bb test" needs to be in "unit_tests" folder.
+* For tests that are part of test framework needs to be packaged with the build. So they should be part of "src/dent_os_testbed/test" folder.
 
 ## Reporting
-- Logs, test framework summary, html reports will be output to folder `test_output/dent_test_result_MM_DD_YYYY_THH_mm_SS` and will have following sample file hierarchy
+
+* Logs, test framework summary, html reports will be output to folder `test_output/dent_test_result_MM_DD_YYYY_THH_mm_SS` and will have following sample file hierarchy
 
 ```code
 device_files/
