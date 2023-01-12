@@ -1,9 +1,9 @@
 # Configuration for running the tests
 
 Test Bed configuration file format
---------------------
+---; 
 
-```
+```json
 {
     "devices" : [
        {
@@ -36,30 +36,29 @@ Test Bed configuration file format
 ```
 
 Configurations
----------------------
+---; 
 
 Below is the directory structure expected for testbed configuration
 
 * configurations/
-  + testbed_config
-    - [testbed_name1]
-      - [dut1]
-        - NTP
-        - QUAGGA_CONFIG
-        - DHCP
-        - QUAGGA_DAEMONS
-        - HOSTNAME
-        - QUAGGA_VTYSH
-        - HOSTS
-        - RESOLV
-        - NETWORK_INTERFACES
-        - SSHD_CONF
-        - KEEPALIVED_CONF
-     - [dut2]
-
-        - NTP
-        - QUAGGA_CONFIG
-        - ...
-    - [testbed_name2]
-      - [dut1]
-    - ...
+  * testbed_config
+    * [testbed_name1]
+      * [dut1]
+        * NTP
+        * QUAGGA_CONFIG
+        * DHCP
+        * QUAGGA_DAEMONS
+        * HOSTNAME
+        * QUAGGA_VTYSH
+        * HOSTS
+        * RESOLV
+        * NETWORK_INTERFACES
+        * SSHD_CONF
+        * KEEPALIVED_CONF
+      * [dut2]
+        * NTP
+        * QUAGGA_CONFIG
+        * ...
+    * [testbed_name2]
+      * [dut1]
+    * ...

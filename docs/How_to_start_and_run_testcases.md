@@ -205,7 +205,7 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
 we will go through the process/steps in details below -
 
 1. Create the linux [we used centos8 vm] testbed >>
--------------------------------------------------------------------
+---;
 
        a. Installing all packages https://github.com/dentproject/testing/DentOS_Framework/README.md
 
@@ -222,18 +222,18 @@ we will go through the process/steps in details below -
 		
 
 2. As per the testbed diagram we will connect all required cables among DUTs[DENT devices] and Keysight devices >>
------------------------------------------------------------------------------------------------------------------
+---;
 
      https://github.com/dentproject/testing/docs/System_integration_test_bed
 
 3. install dentOS on the DUTs >>
-------------------------------------------
+---;
 
      To install dentOS follow the instructions here >> Link.
 	 
 
 4. Run the tests >>
----------------------------------------------------
+---;
 
  after you finish steps 1, 2 & 3 and make sure all boxes are up with proper IP address that you gave on the settings file.
  
