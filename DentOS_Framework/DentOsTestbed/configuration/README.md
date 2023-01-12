@@ -2,6 +2,7 @@
 
 Test Bed configuration file format
 --------------------
+
 ```
 {
     "devices" : [
@@ -39,8 +40,8 @@ Configurations
 
 Below is the directory structure expected for testbed configuration
 
-- configurations/
-  - testbed_config
+* configurations/
+  + testbed_config
     - [testbed_name1]
       - [dut1]
         - NTP
@@ -55,9 +56,10 @@ Below is the directory structure expected for testbed configuration
         - SSHD_CONF
         - KEEPALIVED_CONF
      - [dut2]
+
         - NTP
         - QUAGGA_CONFIG
         - ...
     - [testbed_name2]
       - [dut1]
-		- ...
+    - ...
