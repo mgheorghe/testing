@@ -58,21 +58,21 @@ dentos_testbed_runtests -d --stdout --config configuration/testbed_config/basic/
 - Inside the test folder, its recommended to organize the test code in following file hierarchy.
 ```code
 src/dent_os_testbed/test/test_suite
-	conftest.py
+  conftest.py
 
-	connection/
-  	connection_fixtures.py
-  	test_ssh.py
-  	test_console.py
-	platform/
-  	platform_fixtures.py
-  	test_plat1.py
-  	test_plat2.py
-	l3_tests/
-		l3_fixtures.py
-		test_ip_route.py
-		test_iptables.py
-	l2_tests/
+  connection/
+    connection_fixtures.py
+    test_ssh.py
+    test_console.py
+  platform/
+    platform_fixtures.py
+    test_plat1.py
+    test_plat2.py
+  l3_tests/
+    l3_fixtures.py
+    test_ip_route.py
+    test_iptables.py
+  l2_tests/
 ```
  - Note  that every test case written needs to be either prefixed or suffixed with `test` since PyTest collects test cases based on the naming.
  - Fixtures are a good way to write setup, cleanup, data injections, parameterizing, db provider etc.
@@ -91,18 +91,15 @@ src/dent_os_testbed/test/test_suite
 - We can define custom markers at different scopes. ie function, class and module.
 
 ```python
-func level
-----------
+# func level
 @pytest.mark.suite_test
 def test_func():
 
-class level
------------
+# class level
 class TestClass:
     pytestmark = pytest.mark.suite_test
 
-module level (test_sample.py)
-------------
+# module level (test_sample.py)
 import pytest
 pytestmark = [pytest.mark.suite_test]
 ```
@@ -134,15 +131,15 @@ PYTEST_SUITE_GROUPS = {
 - Logs, test framework summary, html reports will be output to folder `test_output/dent_test_result_MM_DD_YYYY_THH_mm_SS` and will have following sample file hierarchy
 ```code
 device_files/
-	oob1/
-		ssh.log
-		console.log
-		..
-		..
-	oob2/
-	infra1/
-	..
-	..
+  oob1/
+    ssh.log
+    console.log
+    ..
+    ..
+  oob2/
+  infra1/
+  ..
+  ..
 discovery-report.json
 report_suite_group_connection.html
 report_suite_group_l3_tests.html
