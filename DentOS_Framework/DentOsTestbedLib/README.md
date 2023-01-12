@@ -64,11 +64,11 @@ Types represent the custom and complex data types that are used within the modul
 
 ## 3. CodeGen Infrastructure
 
- - The codegen infrastructure works on the model defined in above section.
- - The model is represented using YAML notation and validated using pykwalify python utility.
- - The schema.yaml at the top level model directory (gen/model/schema.yaml) contains valid syntax that can be used in the YAML files.
- - The sub directories under gen/model/ represent package, all the files under that subdirectories represent the module as specified in the previous section.
- - The model is later converted to python objects using the classes under gen/lib/database.py(Package, Module, Class...).
+- The codegen infrastructure works on the model defined in above section.
+- The model is represented using YAML notation and validated using pykwalify python utility.
+- The schema.yaml at the top level model directory (gen/model/schema.yaml) contains valid syntax that can be used in the YAML files.
+- The sub directories under gen/model/ represent package, all the files under that subdirectories represent the module as specified in the previous section.
+- The model is later converted to python objects using the classes under gen/lib/database.py(Package, Module, Class...).
 
 ### 3.1 Plugin based code generation
 

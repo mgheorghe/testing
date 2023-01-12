@@ -80,17 +80,14 @@ src/dent_os_testbed/test/test_suite
   l2_tests/
 ```
 
- - Note  that every test case written needs to be either prefixed or suffixed with `test` since PyTest collects test cases based on the naming.
- - Fixtures are a good way to write setup, cleanup, data injections, parameterizing, db provider etc.
- - Global fixtures can be provided in conftest.py
- - Package or module level fixtures can be defined in respective folders as shown above. But need to be registered in conftest.py as shown below.
- `pytest_plugins = ["dent_os_testbed.test.connection.fixtures"]`
-
- - Fixtures can also be written per test case level where fixture functions have to be decorated with `@pytest.fixture`
-
- - Usage of any pytest hooks of fixtures need to be placed in `conftest.py`
-
-   Refer for pytest in-built plugins, fixtures and hooks: https://docs.pytest.org/en/stable/reference.html
+- Note  that every test case written needs to be either prefixed or suffixed with `test` since PyTest collects test cases based on the naming.
+- Fixtures are a good way to write setup, cleanup, data injections, parameterizing, db provider etc.
+- Global fixtures can be provided in conftest.py
+- Package or module level fixtures can be defined in respective folders as shown above. But need to be registered in conftest.py as shown below.
+`pytest_plugins = ["dent_os_testbed.test.connection.fixtures"]`
+- Fixtures can also be written per test case level where fixture functions have to be decorated with `@pytest.fixture`
+- Usage of any pytest hooks of fixtures need to be placed in `conftest.py`
+Refer for pytest in-built [plugins, fixtures and hooks](https://docs.pytest.org/en/stable/reference.html)
 
 ## Test suite and suite groups
 
