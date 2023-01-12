@@ -1,6 +1,6 @@
 # SIT testbed (Community)
 
-* Open Vendor Lab in Keysight 
+* Open Vendor Lab in Keysight
 * Multi vendor interoperability
 * All features (post commit)
 * Customer demo

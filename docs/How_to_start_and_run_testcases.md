@@ -7,7 +7,7 @@ This is the directory to document how to start/run the tests from the scratch.
   + 7 Dentos Devices.
   + 1 Ixia Chassis with 16 10G port running IxOS/IxNetwork EA versions [We are using 9.20 EA].
   + 1 IxNetwork EA API server.
-  + 1 linux with Ubuntu 22.04 (centos8 will also work or other distributions but the instructions bellow are for ubuntu 22.04) 
+  + 1 linux with Ubuntu 22.04 (centos8 will also work or other distributions but the instructions bellow are for ubuntu 22.04)
 TODO: create a lab BOM
 
 ## Prepare Testbed Server
@@ -56,14 +56,13 @@ TODO: create a lab BOM
     sudo docker run hello-world
 ```
 
-    - add your user to docker group
-        
+- add your user to docker group
 
 ```Shell
     sudo usermod -aG docker $USER
 ```
 
- - install KVM (required by IxNetwork API server)
+- install KVM (required by IxNetwork API server)
 
 ```Shell
     sudo apt -y install cpu-checker
@@ -75,7 +74,6 @@ TODO: create a lab BOM
     sudo systemctl start libvirtd
 ```
 
- 
  - enable root (optional)
 
 ```Shell
@@ -85,7 +83,6 @@ TODO: create a lab BOM
 ```
 
 * setup management port configuration using this sample `/etc/netplan/00-installer-config.yaml`:
-  
 
 ```code
   ---
@@ -114,7 +111,6 @@ TODO: create a lab BOM
 ```
 
 * check the yaml file is ok (optional)
-  
 
 ```Shell
   sudo apt -y install yamllint
@@ -139,7 +135,7 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
 ```
 
 * VMs
-    - create vms folder 
+    - create vms folder
 
 ```Shell
     sudo mkdir /vms
@@ -149,31 +145,25 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
     - download [IxNetwork kvm image](https://downloads.ixiacom.com/support/downloads_and_updates/public/ixnetwork/9.30/IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2).
     - copy `IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2` to `/vms/` on your testbed server.
 
-    
-
 * start the VMs:
 
 ```Shell
     cd /vms
-    
+
     sudo tar xjf IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2
-    
+
     virt-install --name IxNetwork-930 --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
     virsh autostart IxNetwork-930
-    
+
 ```
 
-    
-
 * configure the IxNetwork VM ip:
-  
 
 ```Shell
     virsh console IxNetwork-930 --safe
 ```
 
   if a dhcp server is present we can obseve the IP assigned
-  
 
 ```code
   dent@dent:~$ virsh console IxNetwork-930 --safe
@@ -200,7 +190,6 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
   3. Install DentOS on DUTs
   4. Run the tests.
   5. Check Logs locally at <Linux>/root/testing/Amazon_Framework/DentOsTestbed/logs
-  
 
 we will go through the process/steps in details below -
 
@@ -208,7 +197,7 @@ we will go through the process/steps in details below -
 
        a. (Installing all packages)[https://github.com/dentproject/testing/DentOS_Framework/README.md]
        b. Copy all test files to the linux.
-        copy/forge the directory `https://github.com/dentproject/testing/DentOS_Framework` to your local Linux 
+        copy/forge the directory `https://github.com/dentproject/testing/DentOS_Framework` to your local Linux
        c. change the testbed settings
         change the testbed.json as per your current testbed at <Linux>/root/testing/Amazon_Framework/DentOsTestbed/configuration/testbed_config/sit
 
@@ -223,13 +212,13 @@ To install DentOS follow the instructions here `TODO: add link here`
 ### 4. Run the tests
 
 After you finish steps 1, 2 & 3 and make sure all boxes are up with proper IP address that you gave on the settings file.
- 
+
 Also make sure they are pinging each other.
- 
+
 Now go to directory /root/testing/Amazon_Framework/DentOsTestbed/ and run below commands
 
 ```Shell
-dentos_testbed_runtests -d --stdout 
+dentos_testbed_runtests -d --stdout \
   --config configuration/testbed_config/sit/testbed.json \
   --config-dir configuration/testbed_config/sit/ \
   --suite-groups suite_group_clean_config \
@@ -251,7 +240,7 @@ dentos_testbed_runtests -d --stdout \
                  suite_group_dentv2_testing suite_group_connection suite_group_platform \
   --discovery-reports-dir DISCOVERY_REPORTS_DIR \
   --discovery-reports-dir ./reports \
-  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/ 
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
 ```
 
 ### How to run a single test case
@@ -265,5 +254,5 @@ dentos_testbed_runtests -d --stdout \
   --discovery-reports-dir ./reports \
   --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/ <testcase from the suit>
 ```
-  
+
  [^1]: it can be also centos archlinux .... but the example commands shown are for ubuntu

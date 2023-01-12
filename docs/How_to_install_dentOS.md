@@ -1,4 +1,4 @@
-# For DentOS 
+# For DentOS
 
 # Description
 This is the directory to document how to install dentOS in a device.
@@ -26,23 +26,19 @@ After entering ONIE installing mode, ONIE should be able to discover the “onie
 Just By Copying it locally -
 ###############################
 
+```Shell
 mv DENTOS-main_ONL-..._ARM64_INSTALLED_INSTALLER onie-installer
- 
 cp onie-installer /onie-installer
- 
 onie-select install
- 
 reboot
-
+```
 
 you can also create a http server in the linux testbed and copy the build to the server.
 #######################################################################################
 
-lets say your http server's  DocumentRoot is /temp
+lets say your http server's  DocumentRoot is `/temp`
 
-then type command 'onie-shell'.
+then type command `onie-shell` when `#` prompt appears then just type
 
-when # prompt appears then just type 
-
-ONIE-NOS-INSTALL http://<Linux IP>/temp/DENTOS-main_ONL-..._ARM64_INSTALLED_INSTALLER
+`ONIE-NOS-INSTALL http://<Linux IP>/temp/DENTOS-main_ONL-..._ARM64_INSTALLED_INSTALLER`
 

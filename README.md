@@ -1,6 +1,6 @@
 # DENT Testing
 
-Welcome to DENT testing repository. This is the public repository for test-cases contributed by different organizations for DENT OS features. 
+Welcome to DENT testing repository. This is the public repository for test-cases contributed by different organizations for DENT OS features.
 
 Test cases are mixes of Functional - Features (VRF, LLDP, ACL, etc) and System Test - Integration/Interoperability tests.
 

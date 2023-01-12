@@ -1,7 +1,7 @@
 # Maintainers
 
 Maintainers of test cases project
-are supposed to help contributors by explain them project details, 
+are supposed to help contributors by explain them project details,
 such as architecture, process, existing issues.
 
 This is the list of maintainers, including their email address for direct communications:
