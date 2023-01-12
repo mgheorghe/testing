@@ -68,6 +68,7 @@ IxOS
 json
 KEEPALIVED
 Keysight
+kvm
 KVM
 linux
 LLDP
@@ -118,6 +119,7 @@ virt
 virtio
 VM
 vm
+vms
 VMs
 VRF
 VTYSH
