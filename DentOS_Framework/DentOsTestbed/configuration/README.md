@@ -1,7 +1,6 @@
 # Configuration for running the tests
 
 ## Test Bed configuration file format
----; 
 
 ```json
 {
@@ -36,7 +35,6 @@
 ```
 
 ## Configurations
----; 
 
 Below is the directory structure expected for testbed configuration
 
