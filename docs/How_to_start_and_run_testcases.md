@@ -19,8 +19,6 @@ TODO: create a lab BOM
   + on ssh setup: enable `install OpenSSH server`
 * Install Ubuntu prerequisites
 
-$mdFormatter$22$mdFormatter$
-
 ```
     sudo apt -y update
     sudo apt -y upgrade
@@ -36,8 +34,6 @@ $mdFormatter$22$mdFormatter$
     ```
 
 * install Docker (all credits to [Docker manual](https://docs.docker.com/engine/install/ubuntu/) )
-
-$mdFormatter$22$mdFormatter$
 
 ```
     sudo apt-get -y remove docker docker-engine docker.io containerd runc
@@ -69,8 +65,6 @@ $mdFormatter$22$mdFormatter$
 
  - install KVM (required by IxNetwork API server)
 
-$mdFormatter$22$mdFormatter$
-
 ```
     sudo apt -y install cpu-checker
     sudo kvm-ok
@@ -83,8 +77,6 @@ $mdFormatter$22$mdFormatter$
 
  
  - enable root (optional)
-
-$mdFormatter$22$mdFormatter$
 
 ```
     sudo sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
@@ -135,8 +127,6 @@ $mdFormatter$22$mdFormatter$
 
 * clone the `dentproject/testing` repository into your working directory:
 
-$mdFormatter$22$mdFormatter$
-
 ```
     git clone https://github.com/dentproject/testing
     ```
@@ -151,8 +141,6 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
 * VMs
     - create vms folder 
 
-$mdFormatter$22$mdFormatter$
-
 ```
     sudo mkdir /vms
     sudo chmod 775 -R /vms
@@ -164,8 +152,6 @@ $mdFormatter$22$mdFormatter$
     
 
 * start the VMs:
-
-$mdFormatter$22$mdFormatter$
 
 ```
     cd /vms
