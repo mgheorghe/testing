@@ -9,6 +9,7 @@ The package is intended to do the following
 
 ### Install
 Test framework install using the pip tool
+
 ```Shell
 pip3 install -r Requirements.txt
 pip3 install .
@@ -18,6 +19,7 @@ pip install paramiko
 ```
 
 ### Usage
+
 ```code
 usage: dentos_testbed_runtests [-h] [-c CONFIG]
                                [--suite-groups [suite group [suite group ...]]]
@@ -56,6 +58,7 @@ dentos_testbed_runtests -d --stdout --config configuration/testbed_config/basic/
 ### Organizing test cases
 - Tests can be organized into scopes of functions, classes, modules and packages.
 - Inside the test folder, its recommended to organize the test code in following file hierarchy.
+
 ```code
 src/dent_os_testbed/test/test_suite
   conftest.py
@@ -74,6 +77,7 @@ src/dent_os_testbed/test/test_suite
     test_iptables.py
   l2_tests/
 ```
+
  - Note  that every test case written needs to be either prefixed or suffixed with `test` since PyTest collects test cases based on the naming.
  - Fixtures are a good way to write setup, cleanup, data injections, parameterizing, db provider etc.
  - Global fixtures can be provided in conftest.py
@@ -129,6 +133,7 @@ PYTEST_SUITE_GROUPS = {
 
 ## Reporting
 - Logs, test framework summary, html reports will be output to folder `test_output/dent_test_result_MM_DD_YYYY_THH_mm_SS` and will have following sample file hierarchy
+
 ```code
 device_files/
   oob1/
