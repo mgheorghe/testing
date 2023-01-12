@@ -9,7 +9,7 @@ The package is intended to do the following
 
 ### Install
 Test framework install using the pip tool
-```
+```Shell
 pip3 install -r Requirements.txt
 pip3 install .
 
@@ -18,7 +18,7 @@ pip install paramiko
 ```
 
 ### Usage
-```
+```code
 usage: dentos_testbed_runtests [-h] [-c CONFIG]
                                [--suite-groups [suite group [suite group ...]]]
                                [-d] [--discovery-path DISCOVERY_PATH]
@@ -49,14 +49,14 @@ optional arguments:
 
 Sample run on DENT lab
 
-```
+```Shell
 dentos_testbed_runtests -d --stdout --config configuration/testbed_config/basic/testbed.json --config-dir configuration/testbed_config/basic/ --suite-groups suite_group_cleanup --discovery-reports-dir ./reports --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
 ```
 
 ### Organizing test cases
 - Tests can be organized into scopes of functions, classes, modules and packages.
 - Inside the test folder, its recommended to organize the test code in following file hierarchy.
-```
+```code
 src/dent_os_testbed/test/test_suite
 	conftest.py
 
@@ -90,7 +90,7 @@ src/dent_os_testbed/test/test_suite
 - test suite names need to be prefixed with `suite_` and suite group names need `suite_group_` prefix.
 - We can define custom markers at different scopes. ie function, class and module.
 
-```
+```python
 func level
 ----------
 @pytest.mark.suite_test
@@ -110,7 +110,7 @@ pytestmark = [pytest.mark.suite_test]
 - test case can belong to multiple suites.
 - test suite and mapping from test suite to test suite group needs to be defined in `src/dent_os_testbed/constants.py`
 
-```
+```python
 PYTEST_SUITES = {
     "suite_test": "Test marker",
     "suite_unittest": "Example suite for writing unit test cases which are run during bb",
@@ -132,7 +132,7 @@ PYTEST_SUITE_GROUPS = {
 
 ## Reporting
 - Logs, test framework summary, html reports will be output to folder `test_output/dent_test_result_MM_DD_YYYY_THH_mm_SS` and will have following sample file hierarchy
-```
+```code
 device_files/
 	oob1/
 		ssh.log

@@ -19,7 +19,7 @@ TODO: create a lab BOM
   + on ssh setup: enable `install OpenSSH server`
 * Install Ubuntu prerequisites
 
-```
+```Shell
     sudo apt -y update
     sudo apt -y upgrade
     sudo apt -y autoremove
@@ -31,11 +31,11 @@ TODO: create a lab BOM
       git \
       make
     sudo apt -y install ubuntu-desktop (TODO: remove this depedency)
-    ```
+```
 
 * install Docker (all credits to [Docker manual](https://docs.docker.com/engine/install/ubuntu/) )
 
-```
+```Shell
     sudo apt-get -y remove docker docker-engine docker.io containerd runc
     sudo apt-get update
     sudo apt-get -y install \
@@ -54,18 +54,18 @@ TODO: create a lab BOM
     sudo apt-get update
     sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
     sudo docker run hello-world
-    ```
+```
 
     - add your user to docker group
         
 
+```Shell
+    sudo usermod -aG docker $USER
 ```
-        sudo usermod -aG docker $USER
-        ```
 
  - install KVM (required by IxNetwork API server)
 
-```
+```Shell
     sudo apt -y install cpu-checker
     sudo kvm-ok
     sudo apt -y install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst virt-manager libosinfo-bin
@@ -73,21 +73,21 @@ TODO: create a lab BOM
     sudo usermod -aG kvm $USER
     sudo systemctl enable libvirtd
     sudo systemctl start libvirtd
-    ```
+```
 
  
  - enable root (optional)
 
-```
+```Shell
     sudo sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
     echo 'root:YOUR_PASSWORD' | sudo chpasswd
     sudo systemctl restart sshd
-    ```
+```
 
 * setup management port configuration using this sample `/etc/netplan/00-installer-config.yaml`:
   
 
-```
+```code
   ---
   network:
     ethernets:
@@ -111,15 +111,15 @@ TODO: create a lab BOM
         dhcp4: false
         dhcp6: false
     version: 2
-  ```
+```
 
 * check the yaml file is ok (optional)
   
 
-```
+```Shell
   sudo apt -y install yamllint
   yamllint /etc/netplan/00-installer-config.yaml
-  ```
+```
 
 * reboot
     - ensure networking is ok
@@ -127,13 +127,13 @@ TODO: create a lab BOM
 
 * clone the `dentproject/testing` repository into your working directory:
 
-```
+```Shell
     git clone https://github.com/dentproject/testing
-    ```
+```
 
 * build container
 
-```
+```Shell
 docker build --no-cache --tag dent/test-framework:latest ./testing/framework
 docker tag dent/test-framework:latest dent/test-framework:1.0.0
 ```
@@ -141,10 +141,10 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
 * VMs
     - create vms folder 
 
-```
+```Shell
     sudo mkdir /vms
     sudo chmod 775 -R /vms
-    ```
+```
 
     - download [IxNetwork kvm image](https://downloads.ixiacom.com/support/downloads_and_updates/public/ixnetwork/9.30/IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2).
     - copy `IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2` to `/vms/` on your testbed server.
@@ -153,7 +153,7 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
 
 * start the VMs:
 
-```
+```Shell
     cd /vms
     
     sudo tar xjf IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2
@@ -161,21 +161,21 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
     virt-install --name IxNetwork-930 --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
     virsh autostart IxNetwork-930
     
-    ```
+```
 
     
 
 * configure the IxNetwork VM ip:
   
 
+```Shell
+    virsh console IxNetwork-930 --safe
 ```
-  virsh console IxNetwork-930 --safe
-  ```
 
   if a dhcp server is present we can obseve the IP assigned
   
 
-```
+```code
   dent@dent:~$ virsh console IxNetwork-930 --safe
   Connected to domain 'IxNetwork-930'
   Escape character is ^] (Ctrl + ])
@@ -191,7 +191,7 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
   The IPv6 link-local address is fe80::5054:ff:fe9e:4e8f
   The IPv6 global address is not configured
   To change the IP address, log in as admin (password: admin) below
-  ```
+```
 
 ## To run the test cases below are the steps :
 

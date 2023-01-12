@@ -100,7 +100,7 @@ $ python setup.py release
 
 ## Installation
 
-```
+```Shell
 pip3 install -r Requirements.txt
 pip3 install .
 ```
