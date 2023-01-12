@@ -187,13 +187,13 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
   System initializing, it may take few seconds to become available.
 
   The IPv4 address is 10.36.118.214 (MAC address 52:54:00:9e:4e:8f)
-  Enter https://10.36.118.214 in your web browser to access the application
+  Enter `https://10.36.118.214` in your web browser to access the application
   The IPv6 link-local address is fe80::5054:ff:fe9e:4e8f
   The IPv6 global address is not configured
   To change the IP address, log in as admin (password: admin) below
 ```
 
-## To run the test cases below are the steps :
+## To run the test cases below are the steps
 
   1. Create the Linux [we used CentOS8 VM] testbed where you will run/debug the cases.
   2. Create the DentOS cloud with DENT-Aggregator, DENT-Distributor & DENT-Infrastructure DUTs.
@@ -204,57 +204,66 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
 
 we will go through the process/steps in details below -
 
-1. Create the linux [we used centos8 vm] testbed >>
----;
+### 1. Create the linux [we used centos8 vm] testbed
 
-       a. Installing all packages https://github.com/dentproject/testing/DentOS_Framework/README.md
-
- 
-
-       b. Copy all testfiles to the linux.
-        copy/forge the directory https://github.com/dentproject/testing/DentOS_Framework to your local Linux 
-
- 
-
+       a. (Installing all packages)[https://github.com/dentproject/testing/DentOS_Framework/README.md]
+       b. Copy all test files to the linux.
+        copy/forge the directory `https://github.com/dentproject/testing/DentOS_Framework` to your local Linux 
        c. change the testbed settings
         change the testbed.json as per your current testbed at <Linux>/root/testing/Amazon_Framework/DentOsTestbed/configuration/testbed_config/sit
-		
-		
 
-2. As per the testbed diagram we will connect all required cables among DUTs[DENT devices] and Keysight devices >>
----;
+### 2. As per the testbed diagram we will connect all required cables among DUTs[DENT devices] and Keysight devices
 
-     https://github.com/dentproject/testing/docs/System_integration_test_bed
+(System integration test bed)[https://github.com/dentproject/testing/docs/System_integration_test_bed]
 
-3. install dentOS on the DUTs >>
----;
+### 3. install dentOS on the DUTs
 
-     To install dentOS follow the instructions here >> Link.
-	 
+To install dentOS follow the instructions here >> Link.
 
-4. Run the tests >>
----;
+### 4. Run the tests
 
- after you finish steps 1, 2 & 3 and make sure all boxes are up with proper IP address that you gave on the settings file.
+After you finish steps 1, 2 & 3 and make sure all boxes are up with proper IP address that you gave on the settings file.
  
- and also make sure they are pinging each other.
+Also make sure they are pinging each other.
  
- Now go to directory /root/testing/Amazon_Framework/DentOsTestbed/ and run below commands
+Now go to directory /root/testing/Amazon_Framework/DentOsTestbed/ and run below commands
 
- dentos_testbed_runtests -d --stdout --config configuration/testbed_config/sit/testbed.json --config-dir configuration/testbed_config/sit/ --suite-groups suite_group_clean_config --discovery-reports-dir DISCOVERY_REPORTS_DIR --discovery-reports-dir ./reports –discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
+```Shell
+dentos_testbed_runtests -d --stdout 
+  --config configuration/testbed_config/sit/testbed.json \
+  --config-dir configuration/testbed_config/sit/ \
+  --suite-groups suite_group_clean_config \
+  --discovery-reports-dir DISCOVERY_REPORTS_DIR \
+  --discovery-reports-dir ./reports \
+  –-discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/
+```
 
- This will check the connectivity and basically make the environment.
+This will check the connectivity and basically make the environment.
 
- 
+### How to Run all cases
 
->> How to Run all cases?
+```Shell
+dentos_testbed_runtests -d --stdout \
+  --config configuration/testbed_config/sit/testbed.json \
+  --config-dir configuration/testbed_config/sit/ \
+  --suite-groups suite_group_test suite_group_l3_tests suite_group_basic_trigger_tests suite_group_traffic_tests suite_group_tc_tests suite_group_bgp_tests \
+                 suite_group_stress_tests suite_group_system_wide_testing suite_group_system_health suite_group_store_bringup suite_group_alpha_lab_testing \
+                 suite_group_dentv2_testing suite_group_connection suite_group_platform \
+  --discovery-reports-dir DISCOVERY_REPORTS_DIR \
+  --discovery-reports-dir ./reports \
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/ 
+```
 
-  dentos_testbed_runtests -d --stdout --config configuration/testbed_config/sit/testbed.json --config-dir configuration/testbed_config/sit/ --suite-groups suite_group_test suite_group_l3_tests suite_group_basic_trigger_tests suite_group_traffic_tests suite_group_tc_tests suite_group_bgp_tests suite_group_stress_tests suite_group_system_wide_testing suite_group_system_health suite_group_store_bringup suite_group_alpha_lab_testing suite_group_dentv2_testing suite_group_connection suite_group_platform --discovery-reports-dir DISCOVERY_REPORTS_DIR --discovery-reports-dir ./reports --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/ 
- 
+### How to run a single test case
 
->> How to run a single test case?
-
-  dentos_testbed_runtests -d --stdout --config configuration/testbed_config/sit/testbed.json --config-dir configuration/testbed_config/sit/ --suite-groups <suite group name> --discovery-reports-dir DISCOVERY_REPORTS_DIR --discovery-reports-dir ./reports --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/ <testcase from the suit>
-  
+```Shell
+dentos_testbed_runtests -d --stdout \
+  --config configuration/testbed_config/sit/testbed.json \
+  --config-dir configuration/testbed_config/sit/ \
+  --suite-groups <suite group name> \
+  --discovery-reports-dir DISCOVERY_REPORTS_DIR \
+  --discovery-reports-dir ./reports \
+  --discovery-path ../DentOsTestbedLib/src/dent_os_testbed/discovery/modules/ <testcase from the suit>
+```
   
  [^1]: it can be also centos archlinux .... but the example commands shown are for ubuntu
