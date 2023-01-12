@@ -38,4 +38,3 @@ lets say your http server's  DocumentRoot is `/temp`
 then type command `onie-shell` when `#` prompt appears then just type
 
 `ONIE-NOS-INSTALL http://<Linux IP>/temp/DENTOS-main_ONL-..._ARM64_INSTALLED_INSTALLER`
-
