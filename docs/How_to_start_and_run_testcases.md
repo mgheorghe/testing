@@ -56,13 +56,13 @@ TODO: create a lab BOM
     sudo docker run hello-world
 ```
 
-- add your user to docker group
+* add your user to docker group
 
 ```Shell
     sudo usermod -aG docker $USER
 ```
 
-- install KVM (required by IxNetwork API server)
+* install KVM (required by IxNetwork API server)
 
 ```Shell
     sudo apt -y install cpu-checker
@@ -74,7 +74,7 @@ TODO: create a lab BOM
     sudo systemctl start libvirtd
 ```
 
- - enable root (optional)
+* enable root (optional)
 
 ```Shell
     sudo sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
@@ -96,15 +96,15 @@ TODO: create a lab BOM
         interfaces: [ens160]
         addresses: [10.36.118.210/24]
         routes:
-  	- to: default
-  	  via: 10.36.118.1
+    - to: default
+      via: 10.36.118.1
         mtu: 1500
         nameservers:
           addresses: [4.4.4.4, 8.8.8.8]
         parameters:
-	  stp: false
-	  forward-delay: 0
-	  max-age: 0
+    stp: false
+    forward-delay: 0
+    max-age: 0
         dhcp4: false
         dhcp6: false
     version: 2
@@ -113,18 +113,18 @@ TODO: create a lab BOM
 * check the yaml file is ok (optional)
 
 ```Shell
-  sudo apt -y install yamllint
-  yamllint /etc/netplan/00-installer-config.yaml
+sudo apt -y install yamllint
+yamllint /etc/netplan/00-installer-config.yaml
 ```
 
 * reboot
-    - ensure networking is ok
-    - this is needed also for the permissions to be update, otherwise next step will fail
+  + ensure networking is ok
+  + this is needed also for the permissions to be update, otherwise next step will fail
 
 * clone the `dentproject/testing` repository into your working directory:
 
 ```Shell
-    git clone https://github.com/dentproject/testing
+git clone https://github.com/dentproject/testing
 ```
 
 * build container
@@ -135,25 +135,25 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
 ```
 
 * VMs
-    - create vms folder
+  - create vms folder
 
 ```Shell
-    sudo mkdir /vms
-    sudo chmod 775 -R /vms
+sudo mkdir /vms
+sudo chmod 775 -R /vms
 ```
 
-    - download [IxNetwork kvm image](https://downloads.ixiacom.com/support/downloads_and_updates/public/ixnetwork/9.30/IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2).
-    - copy `IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2` to `/vms/` on your testbed server.
+  + download [IxNetwork kvm image](https://downloads.ixiacom.com/support/downloads_and_updates/public/ixnetwork/9.30/IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2).
+  + copy `IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2` to `/vms/` on your testbed server.
 
 * start the VMs:
 
 ```Shell
-    cd /vms
+cd /vms
 
-    sudo tar xjf IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2
+sudo tar xjf IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2
 
-    virt-install --name IxNetwork-930 --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
-    virsh autostart IxNetwork-930
+virt-install --name IxNetwork-930 --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
+virsh autostart IxNetwork-930
 
 ```
 
