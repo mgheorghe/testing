@@ -135,15 +135,15 @@ docker tag dent/test-framework:latest dent/test-framework:1.0.0
 ```
 
 * VMs
-  - create vms folder
+  * create vms folder
 
-```Shell
-sudo mkdir /vms
-sudo chmod 775 -R /vms
-```
+  ```Shell
+  sudo mkdir /vms
+  sudo chmod 775 -R /vms
+  ```
 
-  - download [IxNetwork kvm image](https://downloads.ixiacom.com/support/downloads_and_updates/public/ixnetwork/9.30/IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2).
-  - copy `IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2` to `/vms/` on your testbed server.
+  * download [IxNetwork kvm image](https://downloads.ixiacom.com/support/downloads_and_updates/public/ixnetwork/9.30/IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2).
+  * copy `IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2` to `/vms/` on your testbed server.
 
 * start the VMs:
 
