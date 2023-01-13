@@ -20,21 +20,21 @@ from dent_os_testbed.utils.Utils import check_asyncio_results
 
 async def tb_clean_config_device(d):
     config_file_list = [
-        ["_NTP", "/etc/ntp.conf"],
-        ["_QUAGGA_CONFIG", "/etc/frr/frr.conf"],
-        ["_DHCP", "/etc/dhcp/dhcpd.conf"],
-        ["_QUAGGA_DAEMONS", "/etc/frr/daemons"],
-        ["_HOSTNAME", "/etc/hostname"],
-        ["_QUAGGA_VTYSH", "/etc/frr/vtysh.conf"],
-        ["_HOSTS", "/etc/hosts"],
-        ["_RESOLV", "/etc/resolv.conf"],
-        ["_NETWORK_INTERFACES", "/etc/network/interfaces"],
-        ["_SSHD_CONF", "/etc/ssh/sshd_config"],
-        ["_KEEPALIVED_CONF", "/etc/keepalived/keepalived.conf"],
-        ["_CUMULUS_FIREWALL_RULES", "~/"],
+        ["NTP", "/etc/ntp.conf"],
+        ["QUAGGA_CONFIG", "/etc/frr/frr.conf"],
+        ["DHCP", "/etc/dhcp/dhcpd.conf"],
+        ["QUAGGA_DAEMONS", "/etc/frr/daemons"],
+        ["HOSTNAME", "/etc/hostname"],
+        ["QUAGGA_VTYSH", "/etc/frr/vtysh.conf"],
+        ["HOSTS", "/etc/hosts"],
+        ["RESOLV", "/etc/resolv.conf"],
+        ["NETWORK_INTERFACES", "/etc/network/interfaces"],
+        ["SSHD_CONF", "/etc/ssh/sshd_config"],
+        ["KEEPALIVED_CONF", "/etc/keepalived/keepalived.conf"],
+        ["CUMULUS_FIREWALL_RULES", "~/"],
     ]
     for src, dst in config_file_list:
-        file = f"{pytest._args.config_dir}/{d.host_name}/{d.host_name}{src}"
+        file = f"{pytest._args.config_dir}/{d.host_name}/{src}"
         if not os.path.exists(file):
             d.applog.info(f"Cannot find {file}")
             continue
@@ -473,3 +473,25 @@ async def tb_collect_logs_from_devices(devices):
     results = await asyncio.gather(*cos, return_exceptions=True)
     check_asyncio_results(results, "tb_collect_logs_from_devices")
 
+
+async def tb_device_tcpdump(device, interface, options, count_only=False, timeout=60, dump=False):
+    """
+    Run tcpdump on a device and return number of captured packets or complete output
+    """
+    cmd = f"timeout --preserve-status {timeout} tcpdump -i {interface} {options}"
+    device.applog.info(f"Starting {cmd} on {device.host_name}...")
+
+    rc, out = await device.run_cmd(cmd, sudo=True)
+
+    if dump:
+        device.applog.info(f"Ran {cmd} on {device.host_name} with rc {rc} and out {out}")
+
+    if count_only:
+        rr = re.findall("\n(\d+) packet[s]* captured\n", out, re.MULTILINE)
+        if rr:
+            return int(rr[0])
+        else:
+            return 0
+
+    else:
+        return out
