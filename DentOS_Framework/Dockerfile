@@ -26,6 +26,9 @@ RUN pip3 install --no-cache-dir ./DentOsTestbedDiscovery
 RUN pip3 install --no-cache-dir -r ./DentOsTestbedLib/Requirements.txt
 RUN pip3 install --no-cache-dir ./DentOsTestbedLib
 
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
+
 LABEL author="Mircea Dan Gheorghe <mircea-dan.gheorghe@keysight.com>"
 LABEL version="1.0"
 LABEL description="DENT env for testing"
