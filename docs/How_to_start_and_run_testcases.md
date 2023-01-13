@@ -195,7 +195,7 @@ we will go through the process/steps in details below -
 
 ### 1. Create the linux [we used centos8 vm] testbed
 
-* a. (Installing all packages)[https://github.com/dentproject/testing/DentOS_Framework/README.md]
+* a. [Installing all packages](https://github.com/dentproject/testing/DentOS_Framework/README.md)
 * b. Copy all test files to the linux. copy/forge the directory `https://github.com/dentproject/testing/DentOS_Framework` to your local Linux
 * c. change the testbed settings change the `testbed.json` as per your current testbed at `./testing/Amazon_Framework/DentOsTestbed/configuration/testbed_config/sit`
 
