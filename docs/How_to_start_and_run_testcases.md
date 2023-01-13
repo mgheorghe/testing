@@ -118,8 +118,8 @@ yamllint /etc/netplan/00-installer-config.yaml
 ```
 
 * reboot
-  + ensure networking is ok
-  + this is needed also for the permissions to be update, otherwise next step will fail
+  * ensure networking is ok
+  * this is needed also for the permissions to be update, otherwise next step will fail
 
 * clone the `dentproject/testing` repository into your working directory:
 
@@ -142,8 +142,8 @@ sudo mkdir /vms
 sudo chmod 775 -R /vms
 ```
 
-  + download [IxNetwork kvm image](https://downloads.ixiacom.com/support/downloads_and_updates/public/ixnetwork/9.30/IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2).
-  + copy `IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2` to `/vms/` on your testbed server.
+  - download [IxNetwork kvm image](https://downloads.ixiacom.com/support/downloads_and_updates/public/ixnetwork/9.30/IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2).
+  - copy `IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2` to `/vms/` on your testbed server.
 
 * start the VMs:
 
@@ -189,17 +189,15 @@ virsh autostart IxNetwork-930
   2. Create the DentOS cloud with DENT-Aggregator, DENT-Distributor & DENT-Infrastructure DUTs.
   3. Install DentOS on DUTs
   4. Run the tests.
-  5. Check Logs locally at <Linux>/root/testing/Amazon_Framework/DentOsTestbed/logs
+  5. Check Logs locally at `./testing/Amazon_Framework/DentOsTestbed/logs`
 
 we will go through the process/steps in details below -
 
 ### 1. Create the linux [we used centos8 vm] testbed
 
-       a. (Installing all packages)[https://github.com/dentproject/testing/DentOS_Framework/README.md]
-       b. Copy all test files to the linux.
-        copy/forge the directory `https://github.com/dentproject/testing/DentOS_Framework` to your local Linux
-       c. change the testbed settings
-        change the testbed.json as per your current testbed at <Linux>/root/testing/Amazon_Framework/DentOsTestbed/configuration/testbed_config/sit
+* a. (Installing all packages)[https://github.com/dentproject/testing/DentOS_Framework/README.md]
+* b. Copy all test files to the linux. copy/forge the directory `https://github.com/dentproject/testing/DentOS_Framework` to your local Linux
+* c. change the testbed settings change the `testbed.json` as per your current testbed at `./testing/Amazon_Framework/DentOsTestbed/configuration/testbed_config/sit`
 
 ### 2. As per the testbed diagram we will connect all required cables among DUTs[DENT devices] and Keysight devices
 
