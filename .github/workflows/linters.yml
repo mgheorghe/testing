@@ -12,14 +12,15 @@ jobs:
     - uses: actions/checkout@v3
     - run: docker run -v $PWD:/workdir ghcr.io/igorshubovych/markdownlint-cli:latest --ignore=minutes --disable=MD013 "**/*.md"
 
-  # lint-docker:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - uses: hadolint/hadolint-action@v3.0.0
-  #       with:
-  #         recursive: true
-  #         ignore: DL3041
+  lint-docker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: hadolint/hadolint-action@v3.0.0
+      with:
+        recursive: true
+        verbose: true
+        config: .github/configs/.hadolint.yaml
 
   lint-shell:
     runs-on: ubuntu-latest
