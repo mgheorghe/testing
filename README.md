@@ -1,6 +1,6 @@
-[![Spellcheck](../../actions/workflows/md-spellcheck.yml/badge.svg)](./.github/actions/workflows/md-spellcheck.yml) 
-[![Linters](../../actions/workflows/linters.yml/badge.svg)](./.github/actions/workflows/linters.yml)
-[![Python Lint](../../actions/workflows/python-lint.yml/badge.svg)](./.github/actions/workflows/python-lint.yml)
+[![Spellcheck](../../actions/workflows/md-spellcheck.yml/badge.svg)](../../.github/actions/workflows/md-spellcheck.yml) 
+[![Linters](../../actions/workflows/linters.yml/badge.svg)](../../.github/actions/workflows/linters.yml)
+[![Python Lint](../../actions/workflows/python-lint.yml/badge.svg)](../../.github/actions/workflows/python-lint.yml)
 
 # DENT Testing
 
