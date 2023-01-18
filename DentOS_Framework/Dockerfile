@@ -24,6 +24,7 @@ RUN pip3 install --no-cache-dir ./DentOsTestbed
 RUN pip3 install --no-cache-dir ./DentOsTestbedDiscovery
 
 RUN pip3 install --no-cache-dir -r ./DentOsTestbedLib/Requirements.txt
+RUN python ./DentOsTestbedLib/setup.py build
 RUN pip3 install --no-cache-dir ./DentOsTestbedLib
 
 RUN apt-get clean
