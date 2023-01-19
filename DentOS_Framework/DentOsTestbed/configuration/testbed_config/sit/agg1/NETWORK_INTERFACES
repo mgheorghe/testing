@@ -12,13 +12,30 @@ iface lo inet loopback
     address 20.20.0.3/32
 
 # The management interface
-auto eth0
-iface eth0 inet dhcp
+auto ma1
+iface ma1 inet dhcp
 
+# connected to IXIA/Keysight
 auto swp1
 iface swp1 inet static
 alias DIS-R1 SWP1
     address 20.20.96.2/30
+
+auto swp2
+iface swp1 inet static
+alias DIS-R1 SWP1
+    address 20.20.96.2/30
+
+auto swp3
+iface swp1 inet static
+alias DIS-R1 SWP1
+    address 20.20.96.2/30
+
+auto swp4
+iface swp1 inet static
+alias DIS-R1 SWP1
+    address 20.20.96.2/30
+
 
 auto swp2
 iface swp2 inet static
