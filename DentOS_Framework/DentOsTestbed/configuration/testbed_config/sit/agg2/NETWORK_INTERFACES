@@ -19,12 +19,12 @@ iface ma1 inet dhcp
 auto swp3
 iface swp3 inet static
 alias IXIA LINK
-    address 20.20.15.2/30
+    address 20.20.15.1/30
 
 auto swp4
 iface swp4 inet static
 alias IXIA LINK
-    address 20.20.16.2/30
+    address 20.20.16.1/30
 
 
 # connected to INFRA1
