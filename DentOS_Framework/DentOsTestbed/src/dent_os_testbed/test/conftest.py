@@ -5,21 +5,23 @@ import tempfile
 import pytest
 import pytest_asyncio
 
-from dent_os_testbed.constants import DEFAULT_LOGGER, LOGDIR, PYTEST_SUITES
+from dent_os_testbed.constants import (
+    DEFAULT_LOGGER,
+    LOGDIR,
+    PYTEST_SUITES,
+)
 from dent_os_testbed.logger.Logger import AppLogger
 from dent_os_testbed.utils.FileHandlers.FileHandlerFactory import (
     FileHandlerFactory,
     FileHandlerTypes,
 )
+from dent_os_testbed.utils.test_utils.cleanup_utils import cleanup_bridges as _cleanup_bridges
+from dent_os_testbed.utils.test_utils.cleanup_utils import cleanup_ip_addrs as _cleanup_ip_addrs
+from dent_os_testbed.utils.test_utils.cleanup_utils import cleanup_qdiscs as _cleanup_qdiscs
+from dent_os_testbed.utils.test_utils.cleanup_utils import cleanup_routes as _cleanup_routes
+from dent_os_testbed.utils.test_utils.cleanup_utils import cleanup_vrfs as _cleanup_vrfs
+from dent_os_testbed.utils.test_utils.cleanup_utils import get_initial_routes
 from dent_os_testbed.utils.test_utils.tb_utils import tb_get_all_devices
-from dent_os_testbed.utils.test_utils.cleanup_utils import (
-    cleanup_ip_addrs as _cleanup_ip_addrs,
-    cleanup_bridges as _cleanup_bridges,
-    cleanup_qdiscs as _cleanup_qdiscs,
-    cleanup_routes as _cleanup_routes,
-    cleanup_vrfs as _cleanup_vrfs,
-    get_initial_routes,
-)
 from dent_os_testbed.utils.test_utils.tgen_utils import (
     tgen_utils_get_dent_devices_with_tgen,
     tgen_utils_stop_protocols,
