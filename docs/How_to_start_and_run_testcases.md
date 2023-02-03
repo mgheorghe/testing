@@ -130,7 +130,7 @@ git clone https://github.com/dentproject/testing
 * build container
 
 ```Shell
-docker build --no-cache --tag dent/test-framework:latest ./testing/framework
+docker build --no-cache --tag dent/test-framework:latest ./testing/DentOS_Framework
 docker tag dent/test-framework:latest dent/test-framework:1.0.0
 ```
 
