@@ -83,9 +83,11 @@ class Device(object):
             for link in self.links:
                 if len(link) == 3:
                     fr, to, media = link[0], link[1], link[2]
-                if len(link) == 2:
+                elif len(link) == 2:
                     fr, to = link[0], link[1]
                     media = self.media_mode
+                else:
+                    self.applog.debug("ERROR: links lenth looks wrong")
                 dut, port = to.split(":")
                 if dut not in self.links_dict:
                     self.links_dict[dut] = [[], [], []]  # from and port seperate array
