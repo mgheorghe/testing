@@ -125,6 +125,10 @@ yamllint /etc/netplan/00-installer-config.yaml
 
 ```Shell
 git clone https://github.com/dentproject/testing
+
+# optional change to a different branch
+# cd ./testing
+# git checkout <branch name>
 ```
 
 * build container
