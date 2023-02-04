@@ -105,8 +105,7 @@ class IxnetworkIxiaClientImpl(IxnetworkIxiaClient):
                 # divided equally between copper and fiber
                 if device.media_mode == "mixed":
                     device.applog.info("Changing port: {} media mode from copper to fiber".format(port))
-                    vport[0].L1Config.NovusTenGigLan.Media = "fiber"
-                    device.applog.info(device.links_dict)
+                    vport[0].L1Config.NovusTenGigLan.Media = [link[2] for link in device.links if link[0] == port][0]
                 elif device.media_mode == "fiber":
                     device.applog.info("Changing all vports media mode to fiber")
                     vport[0].L1Config.NovusTenGigLan.Media = "fiber"
