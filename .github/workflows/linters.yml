@@ -2,7 +2,19 @@ name: Linters
 
 on:
   pull_request:
+    paths:
+    - '**/*.md'
+    - '**/*.yaml'
+    - '**/*.yml'
+    - '**/*.sh'
+    - '**/Dockerfile'
   push:
+    paths:
+    - '**/*.md'
+    - '**/*.yaml'
+    - '**/*.yml'
+    - '**/*.sh'
+    - '**/Dockerfile'
   workflow_dispatch:
 
 jobs:
