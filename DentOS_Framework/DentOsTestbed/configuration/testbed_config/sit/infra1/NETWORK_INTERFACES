@@ -77,12 +77,9 @@ alias Vlan Aware Bridge
     mstpctl-bpduguard swp1=yes swp2=yes swp3=yes swp4=yes swp5=yes swp6=yes swp7=yes swp8=yes swp9=yes swp10=yes swp11=yes swp12=yes swp13=yes    swp14=yes swp15=yes swp16=yes swp17=yes swp18=yes swp19=yes swp20=yes swp21=yes swp22=yes swp23=yes swp24=yes swp25=yes swp26=yes swp27=yes swp28=yes swp29=yes swp30=yes swp31=yes swp32=yes swp33=yes swp34=yes swp35=yes swp36=yes swp37=yes swp38=yes swp39=yes swp40=yes swp41=yes swp42=yes swp43=yes swp44=yes swp45=yes swp46=yes swp47=yes swp48=yes
     bridge-vlan-aware yes
 
-auto swp1
-iface swp1
+auto swp3
+iface swp3
+alias IXIA LINK
     bridge-pvid 100
     bridge-vids 300 400 500 600
 
-auto swp2
-iface swp2
-    bridge-pvid 100
-    bridge-vids 300 400 500 600
