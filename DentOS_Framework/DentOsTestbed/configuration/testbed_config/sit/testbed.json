@@ -25,8 +25,8 @@
             "os":"dentos",
             "type" : "INFRA_SWITCH",
             "hostName": "infra2",
-            "model": "arm64-accton-as4224-52p-r0",
-            "ip": "10.36.118.42",   
+            "model": "arm64-delta-tn48m-poe-dn-r0",
+            "ip": "10.36.118.23",   
             "login":{
                 "userName":"root",
                 "password":"onl"
@@ -45,8 +45,8 @@
             "os":"dentos",
             "type" : "AGGREGATION_ROUTER",
             "hostName": "agg1",
-            "model": "arm64-delta-tn48m-poe-dn-r0",
-            "ip": "10.36.118.23",
+            "model": "arm64-accton-as5114-48x-r0",
+            "ip": "10.36.118.44",
             "login":{
                 "userName":"root",
                 "password":"onl"
