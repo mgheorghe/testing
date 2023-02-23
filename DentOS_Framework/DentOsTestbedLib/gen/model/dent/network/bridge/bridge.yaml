@@ -167,7 +167,7 @@
       - bridge fdb { add | append | del | replace } LLADDR dev DEV { local | static | dynamic }
       [ self ] [ master ] [ router ] [ use ] [ extern_learn ] [ sticky ] [ dst IPADDR ] [ vni VNI ] [ port PORT ] [ via DEVICE ]
       - bridge fdb [ show ] [ dev DEV ] [ br BRDEV ] [ brport DEV ] [ vlan VID ] [ state STATE ]
-    desc: fdb objects contain known Ethernet addresses on a link.
+      - fdb objects contain known Ethernet addresses on a link.
     apis: ['add', 'append', 'delete', 'replace', 'show']
     members:
     - name: dev
@@ -235,7 +235,7 @@
         -p[retty] | -j[son] | -o[neline] }
       - bridge mdb { add | del } dev DEV port PORT grp GROUP [ permanent | temp ] [ vid VID ]
       - bridge mdb show [ dev DEV ]
-    desc: mdb objects contain known IP multicast group addresses on a link.
+      - mdb objects contain known IP multicast group addresses on a link.
     apis: ['add', 'delete', 'show']
     members:
     - name: dev
@@ -270,7 +270,7 @@
         -p[retty] | -j[son] | -o[neline] }
       - bridge vlan { add | del } dev DEV vid VID [ tunnel_info TUNNEL_ID ] [ pvid ] [ untagged ] [ self ] [ master ]
       - bridge vlan [ show | tunnelshow ] [ dev DEV ]
-    desc: vlan objects contain known VLAN IDs for a link.
+      - vlan objects contain known VLAN IDs for a link.
     apis: ['add', 'delete', 'show', 'tunnelshow']
     members:
     - name: dev
@@ -307,7 +307,7 @@
       OPTIONS := { -V[ersion] | -s[tatistics] | -n[etns] name | -b[atch] filename | -c[lor] |
         -p[retty] | -j[son] | -o[neline] }
       - bridge monitor [ all | neigh | link | mdb ]
-    desc: The bridge utility can monitor the state of devices and addresses continuously.
+      - The bridge utility can monitor the state of devices and addresses continuously.
     apis: ['monitor']
     members:
     - name: object
