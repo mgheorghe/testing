@@ -12,17 +12,17 @@ iface lo inet loopback
     address 20.20.0.102/32
 
 # The management interface
-auto eth0
-iface eth0 inet dhcp
+auto ma1
+iface ma1 inet dhcp
 
 auto swp49
 iface swp49 inet static
-alias AGG1 SWP3
+alias AGG1 SWP48
     address 20.20.96.21/30
 
 auto swp50
 iface swp50 inet static
-alias AGG2 SWP3
+alias AGG2 SWP48
     address 20.20.96.29/30
 
 auto bond0
