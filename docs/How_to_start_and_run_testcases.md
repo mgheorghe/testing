@@ -29,7 +29,8 @@ TODO: create a lab BOM
       net-tools \
       curl \
       git \
-      make
+      make \
+      pbzip2
     sudo apt -y install ubuntu-desktop (TODO: remove this depedency)
 ```
 
@@ -137,6 +138,112 @@ git clone https://github.com/dentproject/testing
 docker build --no-cache --tag dent/test-framework:latest ./testing/DentOS_Framework
 docker tag dent/test-framework:latest dent/test-framework:1.0.0
 ```
+
+
+### Deploy IxNetwork Docker image
+
+* create the storage folder
+
+```Shell
+sudo mkdir /containers
+sudo chmod 775 -R /containers
+```
+
+* download [IxNetwork Docker image](https://downloads.ixiacom.com/support/downloads_and_updates/public/ixnetwork/9.30/Ixia_IxNetworkWeb_Docker_9.30.2212.22.tar.bz2).
+* copy `Ixia_IxNetworkWeb_Docker_9.30.2212.22.tar.bz2` to `/containers/` on your testbed server.
+
+* deploy the IxNetwork container
+
+```Shell
+tar xjf /containers/Ixia_IxNetworkWeb_Docker_9.30.2212.22.tar.bz2
+docker load < /containers/Ixia_IxNetworkWeb_Docker_9.30.2212.22.tar
+```
+
+* start the IxNetwork container:
+
+```Shell
+docker run --rm --network host \
+--name dockerContTest \
+--privileged --restart=always \
+--cap-add=SYS_ADMIN \
+--cap-add=SYS_TIME \
+--cap-add=NET_ADMIN \
+--cap-add=SYS_PTRACE \
+--cpus="12" \
+--memory="24g" \
+-i -d \
+-v /sys/fs/cgroup:/sys/fs/cgroup \
+-v /var/crash/=/var/crash \
+ixnetworkweb_9.30.2212.22_image
+
+
+
+docker run --rm --network host \
+ --p 443:443 \
+ --cap-add=SYS_ADMIN \
+ --cap-add=NET_ADMIN \
+ -i -d \
+ -v /sys/fs/cgroup:/sys/fs/cgroup \
+ --tmpfs /run \
+ ixnetworkweb_9.30.2212.22_image
+
+
+docker network create \
+  -d macvlan \
+  -o parent=br1 \
+  --subnet 10.36.118.0/24 \
+  --gateway=10.36.118.1 \
+  dockerContNetwork
+
+
+
+docker run --net dockerContNetwork --ip 10.36.118.214 \
+--hostname dockerContTestHost \
+--name dockerContTest \
+--privileged --restart=always \
+--cap-add=SYS_ADMIN \
+--cap-add=SYS_TIME \
+--cap-add=NET_ADMIN \
+--cap-add=SYS_PTRACE \
+--cpus="4" \
+--memory="4g" \
+-i -d \
+-v /sys/fs/cgroup:/sys/fs/cgroup \
+-v /var/crash/=/var/crash \
+--tmpfs /run ixnetworkweb_9.30.2212.22_image
+
+
+@loretoparisi I had this message when forgetting to add -v /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro to docker run did you have it? –
+
+
+docker run --rm --tty --detach --privileged --publish 443:443 \
+-v /sys/fs/cgroup:/sys/fs/cgroup \
+--tmpfs /run \
+--name ixn-mt ixnetworkweb_9.30.2212.22_image
+
+
+docker run --rm --tty --detach --privileged --publish 443:443 --name ixn-mt ixnetworkweb_9.30.2212.22_image
+
+docker exec ixn-mt sed -i -e 's/-restInsecure/-restInsecure -ignoreixosversion/g' /opt/ixia/waf/server/webapps/root/WEB-INF/classes/app.properties
+
+docker exec ixn-mt systemctl restart ixia-waf.service
+
+
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+### Deploy IxNetwork VM
 
 * VMs
   * create vms folder
