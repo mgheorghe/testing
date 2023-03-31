@@ -1,3 +1,25 @@
 # Test prerequisite for Code Commit
 
 ![Dent-SIT](../img/code_commit.png)
+
+To run the pre-commit checks locally, you can follow below steps:
+1. Ensure that default python is python3.
+2. Ensure that the `pre-commit` package is installed:
+```
+sudo pip install pre-commit
+```
+3. Go to repository root folder
+4. Install the pre-commit hooks:
+```
+pre-commit install
+```
+5. Use pre-commit to check staged file:
+```
+pre-commit
+```
+6. Alternatively, you can check committed files using:
+```
+pre-commit run --from-ref <commit_id> --to-ref <commit_id>
+or
+pre-commit run --all-files
+```
