@@ -30,6 +30,6 @@ pre-commit
 
 ```Shell
 pre-commit run --from-ref <commit_id> --to-ref <commit_id>
-or
+# or
 pre-commit run --all-files
 ```
