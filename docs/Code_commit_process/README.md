@@ -5,29 +5,29 @@
 To run the pre-commit checks locally, you can follow below steps:
 
 1. Ensure that default python is python3.
-   
+
 2. Ensure that the `pre-commit` package is installed:
-   
+
 ```Shell
 sudo pip install pre-commit
 ```
 
 3. Go to repository root folder
-   
+
 4. Install the pre-commit hooks:
-   
+
 ```Shell
 pre-commit install
 ```
 
 5. Use pre-commit to check staged file:
-   
+
 ```Shell
 pre-commit
 ```
 
 6. Alternatively, you can check committed files using:
-   
+
 ```Shell
 pre-commit run --from-ref <commit_id> --to-ref <commit_id>
 or
