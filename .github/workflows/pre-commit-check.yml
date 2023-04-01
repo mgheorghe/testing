@@ -13,10 +13,12 @@ jobs:
     - run: |
         echo "pre_commit<<EOF" >> $GITHUB_ENV
         echo "`pre-commit run --color never --all-files 2>&1`" >> $GITHUB_ENV
-        exit_code=$?
+        EXIT_CODE=$?
         echo "EOF" >> $GITHUB_ENV
+        echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
 
     - name: Prepare comment
+      if: ${{ env.exit_code }} == 1
       env:
         PRE_COMMIT: ${{ env.pre_commit }}
       run: |
@@ -57,7 +59,9 @@ jobs:
         \`\`\`pre-commit run --all-files\`\`\`"
         results=`echo "$PR_MESSAGE" |  while read line; do echo $line$br; done | tr -d '\n'`
         echo "pre_commit_mod=$results" >> $GITHUB_ENV
+
     - name: Add comment to PR
+      if: ${{ env.exit_code }} == 1
       env:
         URL: ${{ github.event.pull_request.comments_url }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
