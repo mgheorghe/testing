@@ -12,7 +12,7 @@ jobs:
     - run: pre-commit install
     - run: |
         echo "mircea ----------------------------------------> 1"
-        PRC_TXT=`pre-commit run --color never --all-files 2>&1`
+        PRC_TXT="`pre-commit run --color never --all-files 2>&1`"
         echo "mircea ----------------------------------------> 2"
         EXIT_CODE=$?
         echo "mircea ----------------------------------------> 3"
