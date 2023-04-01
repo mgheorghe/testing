@@ -21,7 +21,7 @@ jobs:
         PRE_COMMIT: ${{ env.pre_commit }}
       run: |
         echo "$PRE_COMMIT"
-        awk 'exit code {print $1,$2,$3,$4}'
+        echo "$PRE_COMMIT" | awk 'exit code {print $1,$2,$3,$4}'
 
         if [[ `echo "$PRE_COMMIT" | wc -l` -gt 20 ]]; then
             PRE_COMMIT=`echo "$PRE_COMMIT" | head -n 20`
