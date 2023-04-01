@@ -13,6 +13,7 @@ jobs:
     - run: |
         echo "pre_commit<<EOF" >> $GITHUB_ENV
         echo "`pre-commit run --color never --all-files 2>&1`" >> $GITHUB_ENV
+        exit_code=$?
         echo "EOF" >> $GITHUB_ENV
 
     - name: Prepare comment
@@ -51,9 +52,9 @@ jobs:
 
         6. Alternatively, you can check committed files using:
 
-        \`\`\`pre-commit run --from-ref <commit_id> --to-ref <commit_id>
-        # or
-        pre-commit run --all-files\`\`\`"
+        \`\`\`pre-commit run --from-ref <commit_id> --to-ref <commit_id>\`\`\`
+        or
+        \`\`\`pre-commit run --all-files\`\`\`"
         results=`echo "$PR_MESSAGE" |  while read line; do echo $line$br; done | tr -d '\n'`
         echo "pre_commit_mod=$results" >> $GITHUB_ENV
     - name: Add comment to PR
