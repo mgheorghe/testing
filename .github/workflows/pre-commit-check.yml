@@ -12,7 +12,7 @@ jobs:
     - run: pre-commit install
     - run: |
         echo "pre_commit<<EOF" >> $GITHUB_ENV
-        echo "`pre-commit run --color never --from-ref ${{ github.event.pull_request.base.sha }} --to-ref ${{ github.event.pull_request.head.sha }} 2>&1`" >> $GITHUB_ENV
+        echo "`pre-commit run --color never --all-files 2>&1`" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
 
     - name: PR number
