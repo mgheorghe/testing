@@ -20,7 +20,7 @@ jobs:
         PRE_COMMIT: ${{ env.pre_commit }}
       run: |
         echo "$PRE_COMMIT"
-        EXIT_CODE=$( echo "$PRE_COMMIT" | awk '/exit code/ '{print $4;}' )
+        EXIT_CODE=$( echo "$PRE_COMMIT" | awk '/exit code/ {print $4;}' )
         echo "mir-----1"
         echo $EXIT_CODE
         echo "mir-----2"
