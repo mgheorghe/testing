@@ -2,8 +2,6 @@ name: pre-commit-check
 
 on:
     pull_request:
-    push:
-    workflow_dispatch:
 
 jobs:
   pre-commit:
@@ -17,14 +15,14 @@ jobs:
         echo "EOF" >> $GITHUB_ENV
 
     - name: PR number
-      # if: github.event_name == 'pull_request'
+      if: github.event_name == 'pull_request'
       run: |
         export PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
         echo "pr_num=$PR_NUMBER" >> $GITHUB_ENV
 
     - name: Add Comment
       uses: actions/github-script@v6
-      # if: github.event_name == 'pull_request' && env.pre_commit_status == 'ERROR'
+      if: github.event_name == 'pull_request' # && env.pre_commit_status == 'ERROR'
       with:
         script: |
             await github.rest.issue.createComment({
