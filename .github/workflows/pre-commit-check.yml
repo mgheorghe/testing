@@ -14,12 +14,6 @@ jobs:
         echo "`pre-commit run --color never --from-ref HEAD^ --to-ref HEAD 2>&1`" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
 
-    - name: PR number
-      if: github.event_name == 'pull_request'
-      run: |
-        export PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
-        echo "pr_num=$PR_NUMBER" >> $GITHUB_ENV
-
     - name: Add comment to PR
       env:
         URL: ${{ github.event.pull_request.comments_url }}
