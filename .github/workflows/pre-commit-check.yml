@@ -21,6 +21,7 @@ jobs:
         echo "EOF" >> $GITHUB_ENV
         echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
         echo "mircea ----------------------------------------> 9"
+      continue-on-error: true
 
     - name: Prepare comment
       if: ${{ env.exit_code }} == 1
