@@ -16,12 +16,11 @@ jobs:
         echo "EOF" >> $GITHUB_ENV
 
     - name: Prepare comment
-      if: ${{ env.exit_code }} == 1
       env:
         PRE_COMMIT: ${{ env.pre_commit }}
       run: |
         echo "$PRE_COMMIT"
-        echo "$PRE_COMMIT" | awk '/exit code/ {EXIT_CODE=$2}'
+        echo "$PRE_COMMIT" | awk '/exit code/ {EXIT_CODE=$1}'
         echo "mir-----1"
         echo $EXIT_CODE
         echo "mir-----2"
@@ -61,6 +60,7 @@ jobs:
         \`\`\`pre-commit run --all-files\`\`\`"
         results=`echo "$PR_MESSAGE" |  while read line; do echo $line$br; done | tr -d '\n'`
         echo "pre_commit_mod=$results" >> $GITHUB_ENV
+        echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
 
     - name: Add comment to PR
       if: ${{ env.exit_code }} == 1
