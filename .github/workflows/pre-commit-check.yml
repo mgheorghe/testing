@@ -14,6 +14,7 @@ jobs:
         echo "pre_commit<<EOF" >> $GITHUB_ENV
         echo "`pre-commit run --color never --all-files 2>&1`" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
+
     - name: Prepare comment
       env:
         PRE_COMMIT: ${{ env.pre_commit }}
