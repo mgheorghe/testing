@@ -19,14 +19,18 @@ jobs:
       env:
         PRE_COMMIT: ${{ env.pre_commit }}
       run: |
+        echo "Mircea ----------------------------------> 91"
         echo "$PRE_COMMIT"
         if [[ `echo "$PRE_COMMIT" | wc -l` -gt 20 ]]; then
             PRE_COMMIT=`echo "$PRE_COMMIT" | head -n 20`
             PRE_COMMIT="$PRE_COMMIT\n...\n[truncated extra lines, please run pre-commit locally to view full check results]"
             PRE_COMMIT=`printf "$PRE_COMMIT"`
         fi
+        echo "Mircea ----------------------------------> 6"
         br='<br/>'
+        echo "Mircea ----------------------------------> 7"
         results=`echo "$PRE_COMMIT" |  while read line; do echo $line$br; done | tr -d '\n'`
+        echo "Mircea ----------------------------------> 8"
         PR_MESSAGE="The [pre-commit](http://pre-commit.com/) check detected issues in the files touched by this pull request.
         Detailed pre-commit check results:
         <samp>$results</samp>
@@ -49,6 +53,7 @@ jobs:
         ```
         pre-commit run --from-ref <commit_id> --to-ref <commit_id>
         ```"
+        echo "Mircea ----------------------------------> 9"
         echo "pre_commit_mod=$PR_MESSAGE" >> $GITHUB_ENV
     - name: Add comment to PR
       env:
