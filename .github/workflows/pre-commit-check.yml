@@ -74,5 +74,9 @@ jobs:
             -H "Authorization: token $GITHUB_TOKEN" \
             --data "{ \"body\": \"$PRE_COMMIT\" }"
 
+    - name: pre-commit exit code
+      env:
+        EXIT_CODE: ${{ env.exit_code }}
+      run: exit $EXIT_CODE
 
             
