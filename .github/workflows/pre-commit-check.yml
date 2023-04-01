@@ -14,22 +14,23 @@ jobs:
         echo "pre_commit<<EOF" >> $GITHUB_ENV
         echo "`pre-commit run --color never --all-files 2>&1`" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
-
-    - name: PR number
-      if: github.event_name == 'pull_request'
+    - name: Prepare comment
+      env:
+        PRE_COMMIT: ${{ env.pre_commit }}
       run: |
-        export PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
-        echo "pr_num=$PR_NUMBER" >> $GITHUB_ENV
-
-    - name: Add Comment
-      uses: actions/github-script@v6
-      if: github.event_name == 'pull_request' # && env.pre_commit_status == 'ERROR'
-      with:
-        script: |
-            await github.rest.issue.createComment({
-                issue_number: ${{ env.pr_num }},
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `${{ env.pre_commit }}`
-            }) 
-
+        echo "$PRE_COMMIT"
+        br='<br/>'
+        results=`echo "$PRE_COMMIT" |  while read line; do echo $line$br; done | tr -d '\n'`
+        echo "pre_commit_mod=$results" >> $GITHUB_ENV
+    - name: Add comment to PR
+      env:
+        URL: ${{ github.event.pull_request.comments_url }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PRE_COMMIT: ${{ env.pre_commit_mod }}
+      run: |
+        curl \
+            -X POST \
+            $URL \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            --data "{ \"body\": \"$PRE_COMMIT\" }"
