@@ -11,9 +11,10 @@ jobs:
     - run: sudo pip install pre-commit
     - run: pre-commit install
     - run: |
-        echo "pre_commit<<EOF" >> $GITHUB_ENV
-        echo "`pre-commit run --color never --all-files 2>&1`" >> $GITHUB_ENV
+        PRC_TXT=`pre-commit run --color never --all-files 2>&1`
         EXIT_CODE=$?
+        echo "pre_commit<<EOF" >> $GITHUB_ENV
+        echo "$PRC_TXT" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
         echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
 
