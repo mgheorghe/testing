@@ -12,7 +12,7 @@ jobs:
     - run: pre-commit install
     - run: |
         echo "pre_commit<<EOF" >> $GITHUB_ENV
-        echo "`pre-commit run --color never --all-files 2>&1`" >> $GITHUB_ENV
+        echo "`pre-commit run --color never --from-ref HEAD^ --to-ref HEAD 2>&1`" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
 
     - name: Prepare comment
@@ -21,9 +21,7 @@ jobs:
       run: |
         echo "$PRE_COMMIT"
         EXIT_CODE=$( echo "$PRE_COMMIT" | awk '/exit code/ {print $4;}' )
-        echo "mir-----1"
         echo $EXIT_CODE
-        echo "mir-----2"
         if [[ `echo "$PRE_COMMIT" | wc -l` -gt 20 ]]; then
             PRE_COMMIT=`echo "$PRE_COMMIT" | head -n 20`
             PRE_COMMIT="$PRE_COMMIT\n...\n[truncated extra lines, please run pre-commit locally to view full check results]"
