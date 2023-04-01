@@ -31,27 +31,27 @@ jobs:
         echo "Mircea ----------------------------------> 7"
         results=`echo "$PRE_COMMIT" |  while read line; do echo $line$br; done | tr -d '\n'`
         echo "Mircea ----------------------------------> 8"
-        PR_MESSAGE="The [pre-commit](http://pre-commit.com/) check detected issues in the files touched by this pull request.
-        Detailed pre-commit check results:
-        <samp>$results</samp>
-        To run the pre-commit checks locally, you can follow below steps:
-        1. Ensure that default python is python3.
-        2. Ensure that the `pre-commit` package is installed:
+        PR_MESSAGE="The [pre-commit](http://pre-commit.com/) check detected issues in the files touched by this pull request.\
+        Detailed pre-commit check results:\
+        <samp>$results</samp>\
+        To run the pre-commit checks locally, you can follow below steps:\
+        1. Ensure that default python is python3.\
+        2. Ensure that the `pre-commit` package is installed:\
+        ```\
+        sudo pip install pre-commit\
+        ```\
+        3. Go to repository root folder\
+        4. Install the pre-commit hooks:\
+        ```\
+        pre-commit install\
         ```
-        sudo pip install pre-commit
-        ```
-        3. Go to repository root folder
-        4. Install the pre-commit hooks:
-        ```
-        pre-commit install
-        ```
-        5. Use pre-commit to check staged file:
-        ```
-        pre-commit
-        ```
-        6. Alternatively, you can check committed files using:
-        ```
-        pre-commit run --from-ref <commit_id> --to-ref <commit_id>
+        5. Use pre-commit to check staged file:\
+        ```\
+        pre-commit\
+        ```\
+        6. Alternatively, you can check committed files using:\
+        ```\
+        pre-commit run --from-ref <commit_id> --to-ref <commit_id>\
         ```"
         echo "Mircea ----------------------------------> 9"
         echo "pre_commit_mod=$PR_MESSAGE" >> $GITHUB_ENV
