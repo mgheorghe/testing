@@ -14,11 +14,20 @@ jobs:
         echo "`pre-commit run --color never --from-ref HEAD^ --to-ref HEAD 2>&1`" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
 
+    - name: Prepare comment
+      env:
+        PRE_COMMIT: ${{ env.pre_commit }}
+      run: |
+        echo "$PRE_COMMIT"
+        br='<br/>'
+        results=`echo "$out" |  while read line; do echo $line$br; done | tr -d '\n'`
+        echo "pre_commit_mod=$results" >> $GITHUB_ENV
+
     - name: Add comment to PR
       env:
         URL: ${{ github.event.pull_request.comments_url }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PRE_COMMIT: ${{ env.pre_commit }}
+        PRE_COMMIT: ${{ env.pre_commit_mod }}
       run: |
         curl \
             -X POST \
