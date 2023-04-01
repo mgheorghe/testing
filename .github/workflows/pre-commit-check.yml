@@ -26,9 +26,10 @@ jobs:
             PRE_COMMIT=`printf "$PRE_COMMIT"`
         fi
         br='<br/>'
+        results=`echo "$PRE_COMMIT" |  while read line; do echo $line$br; done | tr -d '\n'`
         PR_MESSAGE="The [pre-commit](http://pre-commit.com/) check detected issues in the files touched by this pull request.
         Detailed pre-commit check results:
-        <samp>$PRE_COMMIT</samp>
+        <samp>$results</samp>
         To run the pre-commit checks locally, you can follow below steps:
         1. Ensure that default python is python3.
         2. Ensure that the `pre-commit` package is installed:
@@ -48,8 +49,7 @@ jobs:
         ```
         pre-commit run --from-ref <commit_id> --to-ref <commit_id>
         ```"
-        results=`echo "$PR_MESSAGE" |  while read line; do echo $line$br; done | tr -d '\n'`
-        echo "pre_commit_mod=$results" >> $GITHUB_ENV
+        echo "pre_commit_mod=$PR_MESSAGE" >> $GITHUB_ENV
     - name: Add comment to PR
       env:
         URL: ${{ github.event.pull_request.comments_url }}
