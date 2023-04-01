@@ -10,7 +10,7 @@ Test cases are mixes of Functional - Features (VRF, LLDP, ACL, etc) and System T
 
 Currently test cases are not tagged so you cannot see which are functional or which are system test.
 
-Please refer to the [Doc](https://github.com/dentproject/testing/tree/master/docs) page for all details
+Please refer refer to the [Doc](https://github.com/dentproject/testing/tree/master/docs) page for all details
 
 Please feel free to suggest more separation or other types of tests.
 
