@@ -8,7 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - run: sudo pip install pre-commit
+    - run: pip install pre-commit>=3.2.1
+    - run: pre-commit --version
     - run: pre-commit install
     - run: git fetch origin
     - run: |
