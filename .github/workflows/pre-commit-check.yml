@@ -15,6 +15,14 @@ jobs:
     - run: pre-commit install
     - run: git fetch origin
     - run: |
+        output=$(pre-commit run --color never --from-ref HEAD^ --to-ref HEAD)
+        exit_code=$?
+        echo "output ---------------------------------------"
+        echo $output
+        echo "---------------------------------------"
+        echo "exit_code ---------------------------------------"
+        echo $exit_code
+        echo "---------------------------------------"
         echo "pre_commit<<EOF" >> $GITHUB_ENV
         echo "`pre-commit run --color never --from-ref HEAD^ --to-ref HEAD 2>&1`" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
