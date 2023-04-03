@@ -11,6 +11,7 @@ jobs:
     - run: pip install pre-commit>=3.2.1
     - run: pre-commit --version
     - run: git --version
+    - run: git status
     - run: pre-commit install
     - run: git fetch origin
     - run: |
