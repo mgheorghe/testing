@@ -25,7 +25,7 @@ jobs:
         echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
 
     - name: Prepare comment
-      if: ${{ env.exit_code  != 1 }}
+      if: ${{ env.exit_code  != 0 }}
       env:
         PRE_COMMIT: ${{ env.pre_commit }}
         EXIT_CODE: ${{ env.exit_code }}
@@ -71,7 +71,7 @@ jobs:
         echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
 
     - name: Add comment to PR
-      if: ${{ env.exit_code  != 1 }}
+      if: ${{ env.exit_code  != 0 }}
       env:
         URL: ${{ github.event.pull_request.comments_url }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
