@@ -15,24 +15,21 @@ jobs:
     - run: pre-commit install
     - run: git fetch origin
     - run: |
-        output=$(pre-commit run --color never --from-ref HEAD^ --to-ref HEAD)
-        exit_code=$?
-        echo "output ---------------------------------------"
-        echo $output
-        echo "---------------------------------------"
-        echo "exit_code ---------------------------------------"
-        echo $exit_code
-        echo "---------------------------------------"
+        OUTPUT=$(pre-commit run --color never --from-ref HEAD^ --to-ref HEAD)
+        EXIT_CODE=$?
+        echo $OUTPUT
         echo "pre_commit<<EOF" >> $GITHUB_ENV
-        echo "`pre-commit run --color never --from-ref HEAD^ --to-ref HEAD 2>&1`" >> $GITHUB_ENV
+        echo $OUTPUT >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
+        echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
 
     - name: Prepare comment
+      if: ${{ env.exit_code }} != 0
       env:
         PRE_COMMIT: ${{ env.pre_commit }}
+        EXIT_CODE: ${{ env.exit_code }}
       run: |
         echo "$PRE_COMMIT"
-        EXIT_CODE=$( echo "$PRE_COMMIT" | awk '/exit code/ {print $4;}' )
         echo $EXIT_CODE
         if [[ `echo "$PRE_COMMIT" | wc -l` -gt 20 ]]; then
             PRE_COMMIT=`echo "$PRE_COMMIT" | head -n 20`
@@ -73,7 +70,7 @@ jobs:
         echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
 
     - name: Add comment to PR
-      if: ${{ env.exit_code }} == 1
+      if: ${{ env.exit_code }} != 0
       env:
         URL: ${{ github.event.pull_request.comments_url }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
