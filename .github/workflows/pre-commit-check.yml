@@ -18,13 +18,14 @@ jobs:
         OUTPUT=$(pre-commit run --color never --from-ref HEAD^ --to-ref HEAD)
         EXIT_CODE=$?
         echo $OUTPUT
+        echo $EXIT_CODE
         echo "pre_commit<<EOF" >> $GITHUB_ENV
         echo $OUTPUT >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
         echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
 
     - name: Prepare comment
-      if: ${{ env.exit_code }} != 0
+      if: ${{ env.exit_code  != 0 }}
       env:
         PRE_COMMIT: ${{ env.pre_commit }}
         EXIT_CODE: ${{ env.exit_code }}
@@ -70,7 +71,7 @@ jobs:
         echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
 
     - name: Add comment to PR
-      if: ${{ env.exit_code }} != 0
+      if: ${{ env.exit_code  != '0' }}
       env:
         URL: ${{ github.event.pull_request.comments_url }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
