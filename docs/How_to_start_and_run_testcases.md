@@ -38,7 +38,8 @@ TODO: create a lab BOM
       net-tools \
       curl \
       git \
-      make
+      make \
+      lbzip2
     sudo apt -y install ubuntu-desktop (TODO: remove this dependency)
 ```
 

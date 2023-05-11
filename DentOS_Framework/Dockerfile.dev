@@ -1,4 +1,4 @@
-FROM dent-testing-base:latest
+FROM dent/test-framework-base:latest
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get -o Acquire::Check-Valid-Until=false update

@@ -37,12 +37,20 @@ cd ..
 
 
 echo 'start ixnetwork container'
+echo 'stop the vm'
 virsh shutdown IxNetwork-930
+echo 'wait 10 sec'
 sleep 10
+echo 'remove the vm'
 virsh undefine IxNetwork-930
 cd /vms
-tar xjf IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2
-virt-install --name IxNetwork-930 --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio,mac=00:1a:c5:00:00:12 --noautoconsole
+echo 'remove existing vm hdd'
+rm -f ./IxNetworkWeb_KVM_9.30.2212.22.qcow2
+echo 'untar the vm image'
+tar xf IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2 --use-compress-program=lbzip2
+echo 'deploy the vm'
+virt-install --name IxNetwork-930 --memory 32000 --vcpus 16 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio,mac=00:1a:c5:00:00:12 --noautoconsole
+echo 'start the vm'
 virsh autostart IxNetwork-930
 virsh start IxNetwork-930
 echo 'IMPLEMENT ME'
@@ -61,13 +69,13 @@ docker image ls dent/test-framework | grep $DENT_CONTAINER_TAG &> /dev/null
 # docker build --no-cache --tag dent/test-framework:latest ./testing/DentOS_Framework
 # docker tag dent/test-framework:latest dent/test-framework:$DENT_CONTAINER_TAG
 
-cd /home/dent/testing/DentOS_Framework
+cd /home/dent
 
 # Build base image
 docker build --no-cache -f /home/dent/testing/DentOS_Framework/Dockerfile -t dent/test-framework-base:latest .
 
 # Build working image
-docker build --no-cache -f /home/dent/testing/DentOS_Framework/Dockerfile.testing -t dent/test-framework:latest .
+docker build --no-cache -f /home/dent/testing/DentOS_Framework/Dockerfile.dev -t dent/test-framework:latest .
 
 
 echo 'split container in 2 base and dent framework'
@@ -87,9 +95,6 @@ docker run --rm --network host \
         --name suite_group_clean_config_$RUN_DATE \
         --mount src=$LOG_DIR,target=/DENT/reports,type=bind \
         --mount src=$LOG_DIR,target=/DENT/logs,type=bind \
-        --mount=type=bind,target=/DENT/DentOsTestbed,source=/home/dent/testing/DentOS_Framework/DentOsTestbed \
-        --mount=type=bind,target=/DENT/DentOsTestbedDiscovery,source=/home/dent/testing/DentOS_Framework/DentOsTestbedDiscovery \
-        --mount=type=bind,target=/DENT/DentOsTestbedLib,source=/home/dent/testing/DentOS_Framework/DentOsTestbedLib \
         -d dent/test-framework:$DENT_CONTAINER_TAG dentos_testbed_runtests \
         -d --stdout \
         --config ./DentOsTestbed/configuration/testbed_config/sit/testbed.json \
@@ -104,8 +109,8 @@ docker wait suite_group_clean_config_$RUN_DATE
 echo 'run dent os amazon test cases'
 docker run --rm --network host \
         --name dentos_testbed_runtests_$RUN_DATE \
-        --mount src=$LOG_DIR,target=/dent-fw/reports,type=bind \
-        --mount src=$LOG_DIR,target=/dent-fw/logs,type=bind \
+        --mount src=$LOG_DIR,target=/DENT/reports,type=bind \
+        --mount src=$LOG_DIR,target=/DENT/logs,type=bind \
         -d dent/test-framework:$DENT_CONTAINER_TAG dentos_testbed_runtests \
         -d --stdout \
         --config ./DentOsTestbed/configuration/testbed_config/sit/testbed.json \
