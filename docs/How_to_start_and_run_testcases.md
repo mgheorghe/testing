@@ -154,6 +154,12 @@ sudo apt -y install yamllint
 yamllint /etc/netplan/00-installer-config.yaml
 ```
 
+* disable firewall
+
+```Shell
+ufw disable
+```
+
 * reboot
   * ensure networking is ok
   * this is needed also for the permissions to be update, otherwise next step will fail
