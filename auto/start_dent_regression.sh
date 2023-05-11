@@ -56,38 +56,24 @@ virsh start IxNetwork-930
 echo 'IMPLEMENT ME'
 
 
-echo 'build the dent framework container if there is a need for it'
-DENT_CONTAINER_TAG=$(sha1sum "./testing/DentOS_Framework/Dockerfile" | cut -d ' ' -f 1)
-docker image ls dent/test-framework | grep $DENT_CONTAINER_TAG &> /dev/null
-# if [ $? -ne 0 ]; then
-#     echo "could not find any container with TAG=$DENT_CONTAINER_TAG"
-#     echo "building the dent/test-framework:$DENT_CONTAINER_TAG container"
-#     docker build --no-cache --tag dent/test-framework:latest ./testing/DentOS_Framework
-#     docker tag dent/test-framework:latest dent/test-framework:$DENT_CONTAINER_TAG
-# fi
-
-# docker build --no-cache --tag dent/test-framework:latest ./testing/DentOS_Framework
-# docker tag dent/test-framework:latest dent/test-framework:$DENT_CONTAINER_TAG
-
 cd /home/dent
 
-echo "Building base image"
-docker build -f /home/dent/testing/DentOS_Framework/Dockerfile.base -t dent/test-framework-base:latest ./testing/DentOS_Framework
+echo 'build the dent framework container if there is a need for it'
+DENT_CONTAINER_TAG=$(sha1sum "./testing/DentOS_Framework/Dockerfile.base" | cut -d ' ' -f 1)
+docker image ls dent/test-framework | grep $DENT_CONTAINER_TAG &> /dev/null
+if [ $? -ne 0 ]; then
+    echo "could not find any container with TAG=$DENT_CONTAINER_TAG"
+    echo "building the dent/test-framework:$DENT_CONTAINER_TAG container"
+    echo "Building base image"
+    docker build -f /home/dent/testing/DentOS_Framework/Dockerfile.base -t dent/test-framework-base:latest ./testing/DentOS_Framework
+fi
 
 echo "Building auto image"
-docker build -f /home/dent/testing/DentOS_Framework/Dockerfile.auto -t dent/test-framework:latest ./testing/DentOS_Framework
+docker build --no-cache -f /home/dent/testing/DentOS_Framework/Dockerfile.auto -t dent/test-framework:latest ./testing/DentOS_Framework
 docker tag dent/test-framework:latest dent/test-framework:$DENT_CONTAINER_TAG
-
-echo "buidling dev image"
-docker build --no-cache -f /home/dent/testing/DentOS_Framework/Dockerfile.dev -t dent/test-framework:latest ./testing/DentOS_Framework
-
-
-echo 'split container in 2 base and dent framework'
-echo 'IMPLEMENT ME'
 
 echo 'install onie build dent image ....'
 echo 'IMPLEMENT ME'
-
 
 echo 'creating log folders'
 LOG_DIR="/home/dent/logs/$DENT_BUILD-$RUN_DATE"
