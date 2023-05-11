@@ -81,6 +81,27 @@ TODO: create a lab BOM
     sudo usermod -aG docker $USER
 ```
 
+### Install dhcp server (optional but recommended)
+
+```Shell
+    sudo apt-get update
+    sudo apt-get -y install isc-dhcp-server
+    sudo systemctl enable isc-dhcp-server
+    sudo systemctl start isc-dhcp-server
+```
+
+* edit the dhcp config to provide IPs to your DENT devices and to IxNetwork VM
+
+```Shell
+    sudo  nano /etc/dhcp/dhcpd.conf
+```
+
+* restart the dhcp server
+
+```Shell
+    sudo systemctl start isc-dhcp-server
+```
+
 ### Install KVM
 
 * install KVM (required by IxNetwork API server)
@@ -156,7 +177,7 @@ cd /vms
 
 sudo tar xjf IxNetworkWeb_KVM_9.30.2212.22.qcow2.tar.bz2
 
-virt-install --name IxNetwork-930 --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio --noautoconsole
+virt-install --name IxNetwork-930 --memory 16000 --vcpus 8 --disk /vms/IxNetworkWeb_KVM_9.30.2212.22.qcow2,bus=sata --import --os-variant centos7.0 --network bridge=br1,model=virtio,mac=00:1a:c5:00:00:12 --noautoconsole
 virsh autostart IxNetwork-930
 
 ```
