@@ -71,11 +71,15 @@ docker image ls dent/test-framework | grep $DENT_CONTAINER_TAG &> /dev/null
 
 cd /home/dent
 
-# Build base image
-docker build --no-cache -f /home/dent/testing/DentOS_Framework/Dockerfile -t dent/test-framework-base:latest .
+echo "Building base image"
+docker build -f /home/dent/testing/DentOS_Framework/Dockerfile.base -t dent/test-framework-base:latest ./testing/DentOS_Framework
 
-# Build working image
-docker build --no-cache -f /home/dent/testing/DentOS_Framework/Dockerfile.dev -t dent/test-framework:latest .
+echo "Building auto image"
+docker build -f /home/dent/testing/DentOS_Framework/Dockerfile.auto -t dent/test-framework:latest ./testing/DentOS_Framework
+docker tag dent/test-framework:latest dent/test-framework:$DENT_CONTAINER_TAG
+
+echo "buidling dev image"
+docker build --no-cache -f /home/dent/testing/DentOS_Framework/Dockerfile.dev -t dent/test-framework:latest ./testing/DentOS_Framework
 
 
 echo 'split container in 2 base and dent framework'
@@ -91,6 +95,9 @@ mkdir -p ${LOG_DIR}
 echo "logs can be found in ${LOG_DIR}"
 
 echo 'run dent os cleanup'
+echo "RUN_DATE=$RUN_DATE"
+echo "LOG_DIR=$LOG_DIR"
+echo "DENT_CONTAINER_TAG=$DENT_CONTAINER_TAG"
 docker run --rm --network host \
         --name suite_group_clean_config_$RUN_DATE \
         --mount src=$LOG_DIR,target=/DENT/reports,type=bind \
