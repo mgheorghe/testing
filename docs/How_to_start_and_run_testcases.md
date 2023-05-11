@@ -225,6 +225,13 @@ git clone https://github.com/dentproject/testing
 To save the time during the actual test run and to validate the environment it's recommended to build a container now.
 
 ```Shell
+docker build -f ./testing/DentOS_Framework/Dockerfile -t dent/test-framework:latest .
+docker build -f ./testing/DentOS_Framework/Dockerfile.dev -t dent/test-framework-dev:latest .
+```
+
+or
+
+```Shell
 cd DentOS_Framework
 ./run.sh dentos_testbed_runtests -h
 ```
