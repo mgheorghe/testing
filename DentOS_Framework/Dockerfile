@@ -1,4 +1,4 @@
-sdfdsfsdfds agfdsg dfgvFROM ubuntu:jammy
+FROM ubuntu:jammy
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=US/Pacific
@@ -20,7 +20,7 @@ RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --no-cache-dir -U pip==23.0.1 wheel==0.38.4 setuptools==67.6.0
-dsfgsdfgsggfsdfgds
+
 COPY DentOsTestbed/Requirements.txt /tmp/
 RUN pip3 install --no-cache-dir -r /tmp/Requirements.txt
 
